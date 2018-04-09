@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 require('dotenv').config();
-mongoose.connect('mongodb://localhost:27017/cd-mon', (err => {
+mongoose.connect('mongodb://localhost:27017/dj-store', (err => {
   if(err){
     console.log('failed to connect');
   } else {
