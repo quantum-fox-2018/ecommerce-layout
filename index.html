@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Warung-pedia</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./styles/index.css">
+</head>
+
+<body>
+
+    <!-- header -->
+
+    <div class="header">
+        <div class="header-left">
+            <img class="header-item" id="brand-logo" src="https://d30y9cdsu7xlg0.cloudfront.net/png/53360-200.png">
+            <p class="header-item">Warung-pedia</p>
+        </div>
+        <div class="header-right">
+            <img class="header-item" id="cart-logo" src="http://www.gallotti.luxury/wp-content/uploads/2017/07/Shopping_icons_1_Converted-14-512.png">
+            <button type="button" id="masuk" class="btn btn-success">Masuk</button>
+        </div>
+    </div>
+
+    <!-- navbar -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light d-none d-sm-none d-md-none d-lg-block d-xl-block">
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav justify-content-around w-100">
+            <li class="nav-item dropdown">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Cari Warung</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Mendaftar Warung</a>
+                </li>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Nama warung" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="pos-f-t d-block d-sm-block d-md-block d-lg-none d-xl-none">
+            <div class="collapse" id="navbarToggleExternalContent">
+              <div class="bg-light p-4">
+                <ul class="list-inline d-flex justify-content-around w-100">
+                    <li class="list-inline-item">
+                        <a class="nav-link" href="#">Cari Warung</a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="nav-link" href="#">Mendaftar Warung</a>
+                    </li>
+                    <li class="list-inline-item">
+                        <form class="form-inline my-2 my-lg-0">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Nama warung" aria-label="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        </form>
+                    </li>                    
+                </ul>
+              </div>
+            </div>
+            <nav class="navbar navbar-light bg-light">
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </nav>
+          </div>
+
+    <!-- list of items -->
+
+    <div>
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 d-none d-sm-block" >
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action active">
+                        Jajanan
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">Minuman</a>
+                    <a href="#" class="list-group-item list-group-item-action">Rokok</a>
+                    <a href="#" class="list-group-item list-group-item-action">Gorengan</a>
+                    <a href="#" class="list-group-item list-group-item-action">Yang lain-lain</a>
+                </div>
+            </div>
+            <div class="col-9 d-flex flex-wrap">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="https://2.bp.blogspot.com/-8VA8zkK2tsk/WIKh91GZAcI/AAAAAAAAC3s/eqm1kv8mD4U0ovzJqPchCLs3GZkVudCcgCLcB/s1600/tahu-goreng.jpg"
+                        alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">Tahu Goreng</h4>
+                        <h6 class="card-title">Warung Pak Doni</h6>
+                        <p class="card-text">Tahu goreng enak, resep dari turun temurun</p>
+                        <p class="card-text">Harga : 2.000</p>
+                        <a href="#" class="btn btn-primary">Lihat detail</a>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="https://ecs7.tokopedia.net/img/cache/300/product-1/2015/9/11/595690/595690_a404e801-0993-4f49-a014-4658cd99e3c6.jpg"
+                        alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">Permen Milkita</h4>
+                        <h6 class="card-title">Warung Mba tini</h6>
+                        <p class="card-text">5 bungkus permen milkita sama aja kayak segelas susu loh</p>
+                        <p class="card-text">Harga : 500</p>
+                        <a href="#" class="btn btn-primary">Lihat detail</a>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="https://ecs7.tokopedia.net/img/product-1/2016/9/7/808047/808047_bad4cddd-99f9-44d1-9389-c53bd1aad464.jpg"
+                        alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">Kopi GoodDay</h4>
+                        <h6 class="card-title">Warung Pak Didin</h6>
+                        <p class="card-text">Kopi, ya Good day aja</p>
+                        <p class="card-text">Harga : 2.500</p>
+                        <a href="#" class="btn btn-primary">Lihat detail</a>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="https://4.bp.blogspot.com/-QynHKKeliiM/WL6VJlqcPZI/AAAAAAAABoc/vltmBQnAbj0Uhds29Srmfrb0UMQgzBswACLcB/s1600/20170306_161651.jpg"
+                        alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">Rokok MLD</h4>
+                        <h6 class="card-title">Warung Mbah Sutiyem</h6>
+                        <p class="card-text">Pria punya selera</p>
+                        <p class="card-text">Harga : 21.000</p>
+                        <a href="#" class="btn btn-primary">Lihat detail</a>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="https://img-global.cpcdn.com/003_recipes/d671adbe343a626d/1200x630cq70/photo.jpg"
+                        alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">Cireng mantap</h4>
+                        <h6 class="card-title">Warung Pak Doni</h6>
+                        <p class="card-text">Cireng goreng mantap, resep dari turun temurun</p>
+                        <p class="card-text">Harga : 2.000</p>
+                        <a href="#" class="btn btn-primary">Lihat detail</a>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="https://s2.bukalapak.com/img/213269311/large/Nano_KJ_sct.png"
+                        alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">Permen Nano-nano</h4>
+                        <h6 class="card-title">Warung Mbah Toni</h6>
+                        <p class="card-text">Hidup tuh musti punya banyak rasa</p>
+                        <p class="card-text">Harga : 500</p>
+                        <a href="#" class="btn btn-primary">Lihat detail</a>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="https://s1.bukalapak.com/img/6362171511/large/Kopi_luwak_white_luwak_white_koffie_enak.jpg"
+                        alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">Kopi Luwak White Cofee</h4>
+                        <h6 class="card-title">Warung Pak Roni</h6>
+                        <p class="card-text">Luwak white cofee mah mantap abisss</p>
+                        <p class="card-text">Harga : 2.500</p>
+                        <a href="#" class="btn btn-primary">Lihat detail</a>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="https://ecs7.tokopedia.net/img/cache/700/product-1/2015/4/29/287940/287940_a003f212-ee37-11e4-8db5-e63f87772fba.jpg"
+                            alt="Card image cap">
+                        <div class="card-body">
+                            <h4 class="card-title">Lem Aica-Aibon</h4>
+                            <h6 class="card-title">Warung Pak Toni</h6>
+                            <p class="card-text">Lekat, selekat aku di hatimu</p>
+                            <p class="card-text">Harga : 5.500</p>
+                            <a href="#" class="btn btn-primary">Lihat detail</a>
+                        </div>
+                    </div>                            
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
