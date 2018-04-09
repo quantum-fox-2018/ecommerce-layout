@@ -1,0 +1,17 @@
+.jumbotron {
+  margin-top: 50px; 
+  background: url(../img/banner.jpg); 
+  background-size: cover;
+}
+
+.card-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-title:hover{
+  overflow: visible; 
+  white-space: normal;
+  height: auto;
+}
