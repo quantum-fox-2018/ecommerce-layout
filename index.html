@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Warung-pedia</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -21,15 +22,48 @@
 
     <!-- header -->
 
-    <div class="header">
+    <div class="header" id="cart_shower">
         <div class="header-left">
             <img class="header-item" id="brand-logo" src="https://d30y9cdsu7xlg0.cloudfront.net/png/53360-200.png">
             <p class="header-item">Warung-pedia</p>
         </div>
         <div class="header-right">
-            <img class="header-item" id="cart-logo" src="http://www.gallotti.luxury/wp-content/uploads/2017/07/Shopping_icons_1_Converted-14-512.png">
+            <img class="header-item" id="cart-logo" src="http://www.gallotti.luxury/wp-content/uploads/2017/07/Shopping_icons_1_Converted-14-512.png" data-toggle="modal" data-target="#cartModal">
             <button type="button" id="masuk" class="btn btn-success">Masuk</button>
         </div>
+        <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Kantong Belanja</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div v-if="cart.length > 0">
+                        <ul class="list-group">
+                            <li class="list-group-item" v-for="item in cart">
+                                <p>{{ item.item_name }}</p>
+                                <p>{{ item.shop_name }}</p>
+                                <p>{{ item.item_desc }}</p>
+                                <input type="number" min="1" v-model="item.item_quantity">
+                                <br>
+                                <p>Price : {{ itemTotalPrice(item)}}</p>
+                                <br>
+                                <button v-on:click="deleteItem(item)">DELETE</button>                                
+                            </li>
+                            <li v-if="cart.length > 0" class="list-group-item">Total Price: {{ totalPrice() }}</li>
+                        </ul>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                  <button type="button" class="btn btn-primary">Bayar</button>
+                </div>
+              </div>
+            </div>
+          </div>
     </div>
 
     <!-- navbar -->
@@ -80,111 +114,169 @@
 
     <!-- list of items -->
 
-    <div>
+    <div id="item_shower">
         <div class="row">
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 d-none d-sm-block" >
                 <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action active">
-                        Jajanan
+                    <a href="#" class="list-group-item list-group-item-action" v-for="type in types">
+                        {{type}}
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action">Minuman</a>
-                    <a href="#" class="list-group-item list-group-item-action">Rokok</a>
-                    <a href="#" class="list-group-item list-group-item-action">Gorengan</a>
-                    <a href="#" class="list-group-item list-group-item-action">Yang lain-lain</a>
                 </div>
             </div>
             <div class="col-9 d-flex flex-wrap">
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="https://2.bp.blogspot.com/-8VA8zkK2tsk/WIKh91GZAcI/AAAAAAAAC3s/eqm1kv8mD4U0ovzJqPchCLs3GZkVudCcgCLcB/s1600/tahu-goreng.jpg"
+                <div class="card" style="width: 18rem;" v-for="item in items">
+                    <img class="card-img-top" v-bind:src="item.item_image"
                         alt="Card image cap">
                     <div class="card-body">
-                        <h4 class="card-title">Tahu Goreng</h4>
-                        <h6 class="card-title">Warung Pak Doni</h6>
-                        <p class="card-text">Tahu goreng enak, resep dari turun temurun</p>
-                        <p class="card-text">Harga : 2.000</p>
-                        <a href="#" class="btn btn-primary">Lihat detail</a>
+                        <h4 class="card-title">{{ item.item_name }}</h4>
+                        <h6 class="card-title">{{ item.shop_name }}</h6>
+                        <p class="card-text">{{ item.item_desc }}</p>
+                        <p class="card-text">Harga : {{ toRp(item.item_price) }}</p>
+                        <button class="btn btn-primary" v-on:click="addToCart(item)">Beli Barang</button>
                     </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="https://ecs7.tokopedia.net/img/cache/300/product-1/2015/9/11/595690/595690_a404e801-0993-4f49-a014-4658cd99e3c6.jpg"
-                        alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">Permen Milkita</h4>
-                        <h6 class="card-title">Warung Mba tini</h6>
-                        <p class="card-text">5 bungkus permen milkita sama aja kayak segelas susu loh</p>
-                        <p class="card-text">Harga : 500</p>
-                        <a href="#" class="btn btn-primary">Lihat detail</a>
-                    </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="https://ecs7.tokopedia.net/img/product-1/2016/9/7/808047/808047_bad4cddd-99f9-44d1-9389-c53bd1aad464.jpg"
-                        alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">Kopi GoodDay</h4>
-                        <h6 class="card-title">Warung Pak Didin</h6>
-                        <p class="card-text">Kopi, ya Good day aja</p>
-                        <p class="card-text">Harga : 2.500</p>
-                        <a href="#" class="btn btn-primary">Lihat detail</a>
-                    </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="https://4.bp.blogspot.com/-QynHKKeliiM/WL6VJlqcPZI/AAAAAAAABoc/vltmBQnAbj0Uhds29Srmfrb0UMQgzBswACLcB/s1600/20170306_161651.jpg"
-                        alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">Rokok MLD</h4>
-                        <h6 class="card-title">Warung Mbah Sutiyem</h6>
-                        <p class="card-text">Pria punya selera</p>
-                        <p class="card-text">Harga : 21.000</p>
-                        <a href="#" class="btn btn-primary">Lihat detail</a>
-                    </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="https://img-global.cpcdn.com/003_recipes/d671adbe343a626d/1200x630cq70/photo.jpg"
-                        alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">Cireng mantap</h4>
-                        <h6 class="card-title">Warung Pak Doni</h6>
-                        <p class="card-text">Cireng goreng mantap, resep dari turun temurun</p>
-                        <p class="card-text">Harga : 2.000</p>
-                        <a href="#" class="btn btn-primary">Lihat detail</a>
-                    </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="https://s2.bukalapak.com/img/213269311/large/Nano_KJ_sct.png"
-                        alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">Permen Nano-nano</h4>
-                        <h6 class="card-title">Warung Mbah Toni</h6>
-                        <p class="card-text">Hidup tuh musti punya banyak rasa</p>
-                        <p class="card-text">Harga : 500</p>
-                        <a href="#" class="btn btn-primary">Lihat detail</a>
-                    </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="https://s1.bukalapak.com/img/6362171511/large/Kopi_luwak_white_luwak_white_koffie_enak.jpg"
-                        alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">Kopi Luwak White Cofee</h4>
-                        <h6 class="card-title">Warung Pak Roni</h6>
-                        <p class="card-text">Luwak white cofee mah mantap abisss</p>
-                        <p class="card-text">Harga : 2.500</p>
-                        <a href="#" class="btn btn-primary">Lihat detail</a>
-                    </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="https://ecs7.tokopedia.net/img/cache/700/product-1/2015/4/29/287940/287940_a003f212-ee37-11e4-8db5-e63f87772fba.jpg"
-                            alt="Card image cap">
-                        <div class="card-body">
-                            <h4 class="card-title">Lem Aica-Aibon</h4>
-                            <h6 class="card-title">Warung Pak Toni</h6>
-                            <p class="card-text">Lekat, selekat aku di hatimu</p>
-                            <p class="card-text">Harga : 5.500</p>
-                            <a href="#" class="btn btn-primary">Lihat detail</a>
-                        </div>
-                    </div>                            
+                </div>                           
             </div>
         </div>
     </div>
+
+    <script>
+        let cartObj = new Vue({
+            el:'#cart_shower',
+            data: {               
+                cart: []
+               
+            },
+            methods: {
+                itemTotalPrice: function(item){
+                    item.item_total_price =  item.item_price * item.item_quantity;
+                    return item.item_total_price;
+                },
+
+                totalPrice : function(){
+                    total = this.cart.reduce((total, cur_item)=>{
+                        return total + cur_item.item_total_price;
+                    },0)
+
+                    return total;
+                },
+
+                deleteItem: function(item){
+                    var index = this.cart.indexOf(item);
+                    if (index !== -1) this.cart.splice(index, 1);
+                }
+            }
+        })
+
+        let itemsObj = new Vue({
+            el:'#item_shower',
+            data: {
+               types: ['Gorengan', 'Jajanan', 'Minuman', 'Rokok', 'Yang lain'],
+               items:[
+                   {    
+                       item_id: 1,
+                       item_name: 'Tahu Goreng',
+                       shop_name: 'Warung Pak Doni',
+                       item_type: 'Gorengan',
+                       item_desc: 'Tahu terlezat di Kedoya',
+                       item_price: 2000,
+                       item_image: 'https://www.khasiat.co.id/wp-content/uploads/2017/04/Tahu-Goreng.jpg',
+                       item_quantity: 1,
+                       item_total_price: 2000
+
+                   
+                   },{
+                       item_id: 2, 
+                       item_name: 'Rokok MLD',
+                       shop_name: 'Warung Mba Tina',
+                       item_type: 'Rokok',
+                       item_desc: 'Pria punya selera',
+                       item_price: 21000,
+                       item_image: 'https://4.bp.blogspot.com/-QynHKKeliiM/WL6VJlqcPZI/AAAAAAAABoc/vltmBQnAbj0Uhds29Srmfrb0UMQgzBswACLcB/s1600/20170306_161651.jpg',
+                       item_quantity: 1,
+                       item_total_price: 21000
+                   
+                   },{
+                       item_id: 3,
+                       item_name: 'Permen Milkita',
+                       shop_name: 'Warung Mba Sinta',
+                       item_type: 'Jajanan',
+                       item_desc: '5 permen milkita sama dengan 1 gelas susu loh !!!',
+                       item_price: 1500,
+                       item_image: 'https://ecs7.tokopedia.net/img/cache/300/product-1/2015/9/11/595690/595690_a404e801-0993-4f49-a014-4658cd99e3c6.jpg',
+                       item_quantity: 1,
+                       item_total_price: 1500
+                   
+                   },{
+                       item_id: 4,
+                       item_name: 'Lem Aica-Aibon',
+                       shop_name: 'Warung Mba Sinta',
+                       item_type: 'Yang lain',
+                       item_desc: 'Lekat selekat cinta aku ke kamu',
+                       item_price: 2500,
+                       item_image: 'https://ecs7.tokopedia.net/img/cache/300/product-1/2016/12/15/14555147/14555147_e096f2af-22e8-48be-be99-1249bd861247_612_816.jpg',
+                       item_quantity: 1,
+                       item_total_price: 2500
+                   
+                   },{
+                       item_id: 5,
+                       item_name: 'Cireng Ranjau',
+                       shop_name: 'Warung Pak Toni',
+                       item_type: 'Gorengan',
+                       item_desc: 'KABOOOMMM !!!',
+                       item_price: 2000,
+                       item_image: 'https://img-global.cpcdn.com/003_recipes/d671adbe343a626d/1200x630cq70/photo.jpg',
+                       item_quantity: 1,
+                       item_total_price: 2000
+                   
+                   },{
+                       item_id: 6,
+                       item_name: 'Permen Nano-Nano',
+                       shop_name: 'Warung Pak Dermawan',
+                       item_type: 'Jajanan',
+                       item_desc: 'Permen naon-naon, rame rasanya',
+                       item_price: 2500,
+                       item_image: 'http://2.bp.blogspot.com/-_kmNlD1WvNQ/Vbxvwir0JZI/AAAAAAAADPc/qNoNyUVWVBM/s1600/Nano%2BNao.jpg',
+                       item_quantity: 1,
+                       item_total_price: 2500
+                   
+                   },{
+                       item_id: 7,
+                       item_name: 'Sendal Swallow',
+                       shop_name: 'Warung Pak Dermawan',
+                       item_type: 'Yang lain',
+                       item_desc: 'Sendal paling populer seantero indonesia',
+                       item_price: 7500,
+                       item_image: 'https://superherru.files.wordpress.com/2017/12/sandal.jpg?w=760',
+                       item_quantity: 1,
+                       item_total_price: 7500
+                   
+                   },{
+                       item_id: 8,
+                       item_name: 'Energen Cereal',
+                       shop_name: 'Warung Mba Tirta',
+                       item_type: 'Minuman',
+                       item_desc: 'Sarapan enggak perlu ribet, kan udah ada energen',
+                       item_price: 2000,
+                       item_image: 'https://media.karousell.com/media/photos/products/2016/10/30/energen_cereal_drink_milk_1477808556_c57870bc.jpg',
+                       item_quantity: 1,
+                       item_total_price: 2000
+                   
+                   },
+                   ]
+               
+            }, 
+            methods: {
+                toRp: function (item_price){
+                    return 'Rp ' + item_price;
+                },
+
+                addToCart: function(item) {                    
+                    const foundId = cartObj._data.cart.find((i) => item.item_id === i.item_id);
+                    (foundId) ? '' : cartObj._data.cart.push(item);
+                }
+            }
+        })
+    </script>
 
 </body>
 
