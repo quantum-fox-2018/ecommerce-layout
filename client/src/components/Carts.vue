@@ -12,12 +12,12 @@
           <form>
             <div class="container">
               <div class="row">
-                <div class="col-xs-8 col-md-4" >
-                  <a class="thumbnail pull-left" href="#"><img class="img-responsive" src="../assets/images/cupcakes.jpeg" alt="cake"></a>
-                  <p> Strawberry velvet</p>
+                <div class="col-xs-8 col-md-4">
+                  <a class="thumbnail pull-left" href="#"><img class="img-responsive" src="" alt="cake"></a>
+                  <p>cake</p>
                 </div>
                 <div class="col-xs-4 col-md-2">
-                  <p> 1 @ 10$</p>
+                  <p> 1 @ $ 10</p>
                 </div>
                 <div class="col-xs-4 col-md-2">
                   <p>$ 10 </p>
@@ -28,7 +28,7 @@
               </div>
               <div class="row">
                 <div class="col-md-offset-6">
-                  <p>Grand Total: $10</p>
+                  <p>Grand Total: $ 10</p>
                 </div>
               </div>
             </div>
@@ -36,7 +36,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Sign Up</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Checkout</button>
         </div>
       </div>
     </div>
@@ -45,7 +45,13 @@
 
 <script>
 export default {
-  name: 'Carts'
+  name: 'Carts',
+  computed: {
+    carts: function () {
+      console.log('carts:', this.$store.getters.getCarts)
+      return this.$store.getters.getCarts
+    }
+  }
 }
 </script>
 

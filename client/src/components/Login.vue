@@ -12,17 +12,17 @@
           <form>
             <div class="form-group">
               <label for="email" class="col-form-label">Email:</label>
-              <input type="text" class="form-control" placeholder="email...">
+              <input type="text" class="form-control" placeholder="email..." v-model="objUser.email">
             </div>
             <div class="form-group">
               <label for="password" class="col-form-label">Password:</label>
-              <input type="password" class="form-control" placeholder="password...">
+              <input type="password" class="form-control" placeholder="password..." v-model="objUser.password">
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Log In</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" v-on:click="signInButton">Log In</button>
         </div>
       </div>
     </div>
@@ -31,7 +31,20 @@
 
 <script>
 export default {
-  name: 'Login'
+  name: 'Login',
+  data () {
+    return {
+      objUser: {
+        email: '',
+        password: ''
+      }
+    }
+  },
+  methods: {
+    signInButton: function () {
+      this.$store.dispatch('signIn', this.objUser)
+    }
+  }
 }
 </script>
 

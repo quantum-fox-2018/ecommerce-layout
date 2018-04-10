@@ -8,13 +8,13 @@
       </ol>
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img class="d-block w-100" src="../assets/images/cupcakes1.jpeg" alt="breads">
+          <img class="d-block w-100" src="../../static/images/cakes.jpeg" alt="breads">
         </div>
         <div class="carousel-item">
-          <img class="d-block w-100" src="../assets/images/cakes.jpeg" alt="cakes">
+          <img class="d-block w-100" src="../../static/images/cakes.jpeg" alt="cakes">
         </div>
         <div class="carousel-item">
-          <img class="d-block w-100" src="../assets/images/chocolates.jpeg" alt="chocolates">
+          <img class="d-block w-100" src="../../static/images/chocolates.jpeg" alt="chocolates">
         </div>
       </div>
       <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

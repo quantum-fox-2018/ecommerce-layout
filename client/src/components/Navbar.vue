@@ -25,25 +25,25 @@
           </li>
         </ul>
         <ul class="navbar-nav">
-            <li class="nav-item active">
-              <!-- <a class="nav-link" href="#" data-toggle="modal" data-target="#signInModal">Log In</a> -->
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal">
-                Log In
+          <li class="nav-item active">
+            <!-- <a class="nav-link" href="#" data-toggle="modal" data-target="#signInModal">Log In</a> -->
+            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#signInModal">
+              Log In
+            </button>
+          </li>
+          <li class="nav-item">
+            <!-- <a class="nav-link" href="#">Sign Up</a> -->
+            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#signUpModal">
+              Sign Up
+            </button>
+          </li>
+          <li class="nav-item">
+              <!-- <a class="nav-link" href="#">Cart</a> -->
+              <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#cartModal">
+                <span id="cartTotal">1<i class="fas fa-shopping-cart"></i></span>
               </button>
             </li>
-            <li class="nav-item">
-              <!-- <a class="nav-link" href="#">Sign Up</a> -->
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signUpModal">
-                Sign Up
-              </button>
-            </li>
-            <li class="nav-item">
-                <!-- <a class="nav-link" href="#">Cart</a> -->
-                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#cartModal">
-                  <span id="cartTotal">1<i class="fas fa-shopping-cart"></i></span>
-                </button>
-              </li>
-          </ul>
+        </ul>
       </div>
     </nav>
 </template>

@@ -9,7 +9,7 @@
             <h4>{{item.name}}</h4>
             <p class="card-text">{{item.description}}</p>
             <p class="itemPrice">$ {{item.price}}</p>
-            <button type="button" class="btn btn-primary">Add to Cart</button>
+            <button type="button" class="btn btn-primary" v-on:click="addCart(item)"><i class="fas fa-plus"></i> Add to Cart</button>
           </div>
         </div>
       </div>
@@ -20,10 +20,19 @@
 <script>
 export default {
   name: 'Items',
+  created: function () {
+    this.$store.dispatch('getItems')
+  },
   computed: {
     items: function () {
       console.log(this.$store.getters.getItems)
       return this.$store.getters.getItems
+    }
+  },
+  methods: {
+    addCart: function (item) {
+      console.log('items:ini item carts', item)
+      this.$store.commit('addCart', item)
     }
   }
 }
