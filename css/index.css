@@ -1,0 +1,71 @@
+@media only screen and (max-width: 320px) {
+  body { 
+     font-size: 2em; 
+  }
+}
+
+#video-contain{
+  margin: 0;
+  padding: 0;
+}
+
+.nav-bar{
+  margin: 1em;
+}
+
+.video-responsive{
+  margin-bottom: 1em;
+}
+
+.container-video{
+  position: relative;
+}
+
+.text-video {
+  color: rgba(255, 255, 255, 0.802);
+  position: absolute;
+  float: left;
+  top: 60%;
+  width: 100%;
+  left: 0;
+}
+
+.container grid-lg {
+  width: 300px;
+}
+
+.img-cards {
+  width: 200px;
+  size: 50%;
+  block-size: 200px;
+  object-fit: contain;
+}
+
+.columns {
+  justify-content: center;
+  text-align: center;
+  align-items: stretch;
+}
+
+.column{
+  margin: 1em;
+}
+
+.card-image {
+  margin: 1em;
+}
+
+header, h1, h4 {
+  margin: 1em;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif !important;
+}
+
+.btn.btn-link {
+  background: 0 0;
+  border-color: transparent;
+  color: black !important;
+}
+
+@media (max-width: 840px) {
+  
+}
