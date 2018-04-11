@@ -1,4 +1,4 @@
-const itemSchema = require('../models/items')
+const itemSchema = require('../models/item.model')
 
 class Items {
   static read(req,res){

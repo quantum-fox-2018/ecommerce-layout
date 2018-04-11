@@ -1,6 +1,5 @@
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -10,7 +9,7 @@ var mongoose = require('mongoose')
 var index = require('./routes/index');
 var users = require('./routes/users');
 var items = require('./routes/items')
-var transactions = require('./routes/transaction')
+// var transactions = require('./routes/transaction')
 const localhost = `mongodb://localhost/eng-commerce`
 const mongoUri = `mongodb://agrha:daun10lembar@ds255588.mlab.com:55588/eng-commerce`
 mongoose.connect(mongoUri)
@@ -32,8 +31,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
-app.use('/items',goods)
-app.use('/transaction',transactions)
+app.use('/items',items)
+// app.use('/transaction',transactions)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

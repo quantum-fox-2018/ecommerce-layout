@@ -4,7 +4,7 @@ var router = express.Router();
 const Auth = require('../middleware/auth')
 
 /* GET users listing. */
-router.get('/',Items.viewAll)
+router.get('/',Items.read)
 router.get('/:id',Auth.login,Auth.admin,Items.findOne)
 router.post('/',Auth.login,Auth.admin,Items.create)   
 router.put('/:id',Auth.login,Auth.admin,Items.update)
