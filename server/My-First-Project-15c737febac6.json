@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "linear-sight-198008",
+  "private_key_id": "15c737febac6f7347d93004aec6d96772cb026a8",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQD1SRmKk9v5rIz3\ncm0W8m67s1GGbTpXMtUcsbe6EIAgqpnIRVElLt2u5mbhFoM4vEc5WPLbr/ovvjJX\nR1E/FjW/D/Sk0FTlT+BtPiBbZFsb5kk/K/6tBOeCddL/MEEkHm9SexP+zuZ8Z4n/\nXfdU2J6BYcra/Yt2wagydLXmzSLX0tKO2G3sepmtXVe1QoEgHXQkPunnIUOIe+r7\nNOoWTw+epw3m8/Z7pBg0GgcmfgS1lbbBnrMCc1Fy0nBJ+wTOxgT0AYYFQycNPW6M\nJb8KoQQizmN58PqKHGdDGUb7BwDhpMTc2Vv38pH2u1NCAPflwjcog9bk5/xN/Coe\nMu0xW+nBAgMBAAECggEADq1Ql2+whniSOM5Cg9B+2sFom+wWRRh4Ew75SOtq10mO\nCSNIrzpmLmx/9HEF6hOuCVrusUGO7WNqnLlaPbWlAqlAQMpsggotCixhAEb5gqpd\ncKe/xfeYqMBHH1jyVOhzTdKqiCE2PnRtl/e18IBDv8crvb3VJgaBe39rUQOuVY6c\naKDN4mRaCjXx5nhTcK3I2GOAfRIDVU6k7zKCB0ulvgQx/oalOrhmLHsmESprVggI\nvbbneHcUGYEJjhkyA1JjmjPOT32aBx70mf3UrYw6PbJm06VZrE9HVguH0937A/Pw\nZS8lwk5VLlEKLcJqxcU2TnCCBQZN8cp0mq/azAScvwKBgQD7dDAaeWSBWoOrLEeG\nfGzG112iWCQOADrYQsoTFisZrcl0zr/h6n+xVHLLMpof2nnCa2U1JwnZfvQ03cmz\na/oZx3mPlT5AGp/qv3pOcW5Fp7KTJHGMyM00d8f2EfPZVRLBfvD12zjc8Rscxqvl\nrZYyYjck5Pqa7Lj8ZFORUtCg2wKBgQD5uFzkjoWIzIkLZOXVdiRSKBJH8g2Z2TRL\nfiADTn++V+IiZiPXX+ltYH9Ha/Fwj44D9JZPMIkPdvnwqrczx6EydHoW7aA0bAG0\n9auwnVEtykkNVgqFozfJHZShFRY6+X6zKTDESIXoSmKWdUmcu9hSvjeDpeInb8tD\nlgDRBk5kkwKBgQCd4KmDNczA2s/o3XhbHCw//GCx2Z1pnQNVXTn7GeQdz1u5l0Yq\n1k0uTdN1eWQDs+zXAQ8efFBW2rsBpm9J0/XH0dKlMBNRtGXLwkVMkzOlUFFyyWLx\n/fG5i6tk+IieYCfSjZ1FAEuHjWp0etja8E5pe/kblRkzxIWxElzV1aVgGQKBgQCb\nhDNlq1SCA079p5Jyw6aO+6GW6KmLvHcS5LMvG/32HmkYHyAHCxYmJcheRF0SSnSZ\nBgNtwb45wVCajtaVCqfa8iruiIIS44iUl8KatP5PVAD2qzTWUPV27FMZljZH+ATt\nsqNKOhgat+h55wU29M0dipSsCeyzvq2Jo6tSgWjkvQKBgQDNNEpQngcBtccZIomR\nn77B0Cfi18qGRdg5+5/mDtx9iTRkSaj/d45CGvqk67bc7rHc0G4W/YtkUL6csvxz\n+hgVEuuoYPlgoo5VSowbiHBZPI+/QXiAZQLlLl19LlXJyOz1Tr+iEoej1yBZ5jtL\nIoD3U5K27MBZ4dYJmowPQ1+59Q==\n-----END PRIVATE KEY-----\n",
+  "client_email": "uploadgambar@linear-sight-198008.iam.gserviceaccount.com",
+  "client_id": "112600797466581532653",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/uploadgambar%40linear-sight-198008.iam.gserviceaccount.com"
+}

@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "linear-sight-198008",
+  "private_key_id": "90f1a1743b613c02173b7f538fb48d58175ae64a",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC8tY3+1yV8r+YF\nQmxfbdqbN+qqrcjmFzvVDZ0WUYZiRvshpTeRwEeLl6nljGRMqQPiUVXy2Z8VTPY7\nDnVMTqvtdWqyD2mXM1oJBPCjyXJeYGMkYvj/cR0U9vBAtKgbkwcHvPT97CgPeJYT\nsOvv3OEvG3loU/u1gTmGp/2LvEsWOv6uXqXCq452Zyh8A/inNTV9bDzCe4EC2Gc+\nBpaiY3O6YcWIbaP5be4rUBeP31QLCxBC8D9y0zdmXTAB4UOFL3OqEmzSF1bXbI6g\nvAdvsVfNf/APsFkFGdK11vibosUe4oYeB/9Vbc+dpiJYRMYH8nTNyKkQG2xX9qKI\nOShGRynHAgMBAAECggEAOP+Rkx7C6OVsUbxdZXmV5Po/vCvfmXf9D34cK4iWUYrl\nAaWYokJ0mbpGi9oa1XjbfnlYv5Bx14o2eWIFlfXRQlkL0BqNpyjQkhbW5HHNRKpS\nZ8QpN2agBRwNN04Z1LJVFkZBrYyuEPY4RlxS91E9BvCCfDuZtJoCmSSWlaVa/Kxy\nQn1SYaLf5FT3FSBswa4QgmQu+gIYqXESHOavVmQycY5HGeIavshyfo4QohSWNR1O\nlASq7mOH9IbA6y4sdHD8YKwkkkjoiG1gMLuMCZaaJzk1W8D+s5rf4svlCjjTTi3s\nQPuiIZ1Imy+iHNQjQFAkBwWOUvqCahWFwDPmsV4DQQKBgQDfrz3u4K0MsIxYeTJd\nOHuAht90grbFfPMBvfs0uqvNTHfhCaQPsxr6E9I0xktwRq5iCXgmbuAdtfqJPiSW\nUcf89YM4w2dlGiKKDTsU6SAWN/6G/le+f3WgmebGUznLucnAT5pvepqnPSGJYSfU\nrm9hiSIdtReeO3qd9Ltyp+ylZwKBgQDX+MiHaGzAClw/yTKaVPdQrZnxW/XkuB3d\npN226O0W7tDpSomHbyL+99ALQ7JuxSGfHXQ7ReZRi0J+zcjP4MJoZLUAh02U5GlL\nMxGqaXX8GYDitj6dv1bJvBXBMvTpHN2P07tWPK4ds5tHAXSzu62RN1x88RYgHzN7\nNcX3Cnk8oQKBgARCcgt6e9EiC4ojxLHBwZhQ+TBezNw15OrDk2UNqPff3OiMJnOm\nFX1tozMeE5GvxuJXC9KvidUHAh5a8JdsN0K56iXKks16Ee5PEjDzv4isyEwJy+H0\ny2ijhaGBNDiM8SqYWXiF/SvyHhFfqEKEj9prohquuCRrPYqEfo1QZVFBAoGAUMOc\nWebXJEm7ja7z2XsEsYr6EqRNJCcmJAjPUONyJi1Quq1BGQCambaaelvqkjnuBM7C\n9JeDNeNaDoluGy72BIwElBoFDTUNmy2R4aRmlswCwsVcTSmMjwxjJkikBbjhsjN/\nzxQKGNldrAQDXGNG2RNW5vJRT9nbKqxFR8kG5YECgYBgno43EnkvIs2PQ9rLZalx\nrNVBDjszKhZvs9p4FbIoDnYgSGwZ1oKEgcySMz9uw2tDKK8ZMRoCDOAI5FM8Rie9\n9qUeJSjpx2OTpbH+K5RGAZtAk6+mN7eEL3QoZP1/9vC/9BdaxJp8K3tQ6VcvGWUs\nVqg/nu3A66UEZgy9xRSxPA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "bucketservice@linear-sight-198008.iam.gserviceaccount.com",
+  "client_id": "113214237009566589477",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/bucketservice%40linear-sight-198008.iam.gserviceaccount.com"
+}
