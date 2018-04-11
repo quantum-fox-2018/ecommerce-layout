@@ -1,70 +1,52 @@
 const Transaction = require('../models/transactions')
 const User = require('../models/users')
 
-module.exports={
-  showTransaction:(req,res)=>{
-    console.log(req.headers.userid)
-    Transaction.find({
-      userId: req.headers.userid,
-      // status: 'pending'
-    })
-    .populate('userId')
-    .populate('itemId')
-    .exec()
-    .then(listTransaction=>{
-      res.status(200).json({
-        message:"success",
-        listTransaction
-      })
-    }).catch(err=>{
-      res.status(400).json(err)
-    })
-  },
-  addTransaction:(req,res)=>{
-    console.log("server add",req.body)
-    console.log(req.headers.userid)
+module.exports = {
+  addTransaction: function (req, res) {
+    console.log("body", req.body)
     let input = {
-      userId : req.headers.userid,
+      userId: req.headers.userid,
       itemId: req.body._id,
-      qty: 1,
-      totalPrice: req.body.totalPrice,
+      unitPrice: req.body.unitPrice,
+      qty: 1
     }
+    console.log('inputforcreate==', input)
     Transaction.findOne({
-      userId : req.headers.userid,
-      itemId: req.body._id,
-    }).then(dataTrans=>{
-      if(!dataTrans){
-        const transaction = new Transaction(input)
-        console.log("======",transaction);
-        transaction.save().then(data=>{
-          res.status(200).json({
-            message:"Transaction created",
-            Transaction:data
-          })
-        }).catch(error=>{
-          res.status(400).json({
-            message:"error",
-            error
-          })
+      userId: req.headers.userid,
+      itemId: req.body._id
+    })
+    .exec()
+    .then(dataTransaction => {
+      if(!dataTransaction){
+        Transaction.create(input, (error, newTransaction) =>{
+          if(error){
+            res.status(400).json({
+              message: "failed create new transaction",
+              error
+            })
+          }else{
+            res.status(201).json({
+              message: "success create new transaction",
+              newTransaction
+            })
+          }
         })
       }else{
-        let newQty = dataTrans.qty+1
+        console.log("masuk upd qty===")
         Transaction.findOneAndUpdate({
-          userId : req.headers.userid,
-          itemId: req.body._id,
+          userId: req.headers.userid,
+          itemId: req.body._id
         },{
-          userId : req.headers.userid,
-          itemId: req.body._id,
-          qty:newQty
-        },{new:true},(err,update)=>{
+          qty: dataTransaction.qty+1
+        }, {new: true}, (err, dataUpdate)=>{
           if(err){
             res.status(400).json({
-              message: "error when update qty",
+              message: "error update qty",
               err
             })
           }else{
             res.status(200).json({
-              message: "update qty success"
+              message: "success update qty"
             })
           }
         })
@@ -75,51 +57,12 @@ module.exports={
         error
       })
     })
-    
   },
-  updateTransaction:(req,res)=>{
-    console.log("ini update",req.body)
-    let id = {_id:req.params.id}
-    let input = {
-      userId : req.body.userId,
-      itemId: req.body._id,
-      qty: 1,
-      totalPrice: req.body.totalPrice,
-      status: 'checkout'
-    }
-    Transaction.findOneAndUpdate(id,input,{new:true},(err,beforeUpdate)=>{
-      if(!err){
-        res.status(200).json({
-          message:"update success",
-        })
-      }else{
-        res.status(400).json({
-          message:"error",
-          err
-        })
-      }
-    })
-  },
-  removeTransaction:(req,res)=>{
-    let id = {_id:req.params.id}
-    Transaction.findByIdAndRemove(id,(err,deletedTransaction)=>{
-      if(!err){
-        res.status(200).json({
-          message:"Transaction removed!",
-          data:deletedTransaction
-        })
-      }else{
-        res.status(400).json({
-          message:"error"
-        })
-      }
-    })
-  },
-  checkout:(req,res)=>{
+  showTransaction: function (req,res){
     console.log(req.headers.userid)
     Transaction.find({
       userId: req.headers.userid,
-      status: 'checkout'
+      status: 'pending'
     })
     .populate('userId')
     .populate('itemId')
@@ -133,9 +76,59 @@ module.exports={
       res.status(400).json(err)
     })
   },
-  test:(req, res) =>{
-    res.status(200).json({
-      message: "masuk"
+  removeTransaction: function (req, res) {
+    let id = {_id: req.params.id}
+
+    Transaction.findOneAndRemove(id, (error, deletedTrans) =>{
+      if(error){
+        res.status(400).json({
+          message: "failed on remove transaction with id"+id,
+          error
+        })
+      }else{
+        res.status(200).json({
+          message: "success remove transaction",
+          deletedTrans
+        })
+      }
+    })
+  },
+  updateTransaction: function(req, res) {
+    let id = {_id: req.params.id}
+
+    Transaction.findOneAndUpdate(id,{
+      status: 'checkout'
+    }, (error, data) =>{
+      if(error){
+        res.status(400).json({
+          message: "failed update status",
+          error
+        })
+      }else{
+        res.status(200).json({
+          message:" success update stat to checkout",
+          data
+        })
+      }
+    })
+  },
+  showCheckout: function(req,res) {
+    console.log(req.headers.userid)
+    Transaction.find({
+      userId: req.headers.userid,
+      status: 'checkout'
+    })
+    .populate('userId')
+    .populate('itemId')
+    .exec()
+    .then(listChekout=>{
+      res.status(200).json({
+        message:"success",
+        listChekout
+      })
+    }).catch(err=>{
+      res.status(400).json(err)
     })
   }
+
 }
