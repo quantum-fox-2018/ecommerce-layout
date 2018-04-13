@@ -62,22 +62,22 @@
       <h1>Product</h1>
       <div class="category col-max-12">
 
-        <div class="col-max-2" v-for="list in listproduct">
+        <div class="col-max-2" v-for="(list,i) in showproducts">
           <div class="card">
             <div class="thumbnails">
-              <img :src="list.picture" alt="" style="width:100%;">
+              <img :src="list.picture" alt="" style="width:100%; height:200px;">
             </div>
             <div  style="text-align:center; font-size:20px; font-family:meriend; margin-bottom:15px;">
               <span class="title">{{list.title}}</span>
             </div>
             <div class="">
-              <span class="harga">Price : {{list.price}}</span>
+              <span class="harga">Price : {{list.price | capitalize}}</span>
             </div>
             <div class="">
               <span class="stock">Stock : {{list.stock}}</span>
             </div>
             <div class="">
-              <button type="button" name="button" class="btnaddcart"> <i class="fas fa-cart-plus"></i> Add to Cart</button>
+              <button type="button" name="button" class="btnaddcart" @click="addcart(list._id,i)"> <i class="fas fa-cart-plus"></i> Add to Cart</button>
             </div>
           </div>
         </div>
@@ -100,18 +100,30 @@ export default {
   name: 'Home',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js PWA',
-      listproduct: []
+      msg: 'Welcome to Your Vue.js PWA'
     }
   },
   created: function () {
     this.showproduct()
   },
+  computed: {
+    showproducts () {
+      return this.$store.getters.getproducts
+    }
+  },
   methods: {
     showproduct () {
       axios.get('http://localhost:3000/showproduct').then(response => {
-        this.listproduct = response.data.data
+        this.$store.dispatch('listproducts', { listproducts: response.data.data })
       })
+    },
+    addcart (id, index) {
+      this.$store.dispatch('choose', { id, index })
+    }
+  },
+  filters: {
+    capitalize: function (value) {
+      return 'Rp.' + value.toLocaleString()
     }
   }
 }

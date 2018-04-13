@@ -18,13 +18,13 @@
           <button type="button" name="button" class="addproduct" @click="showadditem(false,true,false)"> <i class="fas fa-plus"></i> Add Product</button>
           <div class="row products">
             <div class="col-max-12">
-              <div class="col-max-3" v-for="list in listproduct">
+              <div class="col-max-3" v-for="list in showproducts">
                 <div class="card" style="margin:10px;">
                   <div class="delete" style="float:right; border:1px solid rgba(0,0,0,0.125); padding:1px 3px;" @click="deleteproduct(list._id)">
                     <i class="fas fa-times"></i>
                   </div>
                   <div class="thumbnails">
-                    <img :src="list.picture" alt="" style="width:100%;">
+                    <img :src="list.picture" alt="" style="width:100%; height:200px;">
                   </div>
                   <div class="" style="padding-left:10px; margin-bottom:20px;">
                     <div class="" style="text-align:center; font-size:20px; font-family:meriend; margin-bottom:15px;">
@@ -124,17 +124,24 @@ export default {
       updateid: '',
       updatetitle: '',
       updateprice: 0,
-      updatestock: 0,
-      listproduct: []
+      updatestock: 0
     }
   },
   created: function () {
+    if (this.$store.getters.getislogin === false) {
+      this.$router.push('/')
+    }
     this.showproduct()
+  },
+  computed: {
+    showproducts () {
+      return this.$store.getters.getproducts
+    }
   },
   methods: {
     showproduct () {
       axios.get('http://localhost:3000/showproduct').then(response => {
-        this.listproduct = response.data.data
+        this.$store.dispatch('listproducts', { listproducts: response.data.data })
       })
     },
     showadditem (resizable, adaptive, draggable) {
@@ -150,19 +157,32 @@ export default {
       this.$modal.hide('update')
     },
     addproduct () {
+      this.hide()
       const fileInput = document.querySelector('#picture')
-      const formData = new FormData()
-      formData.append('picture', fileInput.files[0])
-      formData.append('title', this.addtitle)
-      formData.append('price', this.addprice)
-      formData.append('stock', this.addstock)
-      axios.post('http://localhost:3000/addproduct', formData).then(response => {
-        this.addtitle = ''
-        this.addprice = 0
-        this.addstock = 0
-        this.hide()
-        this.showproduct()
-      })
+      if (fileInput.files[0] !== undefined) {
+        const formData = new FormData()
+        formData.append('picture', fileInput.files[0])
+        formData.append('title', this.addtitle)
+        formData.append('price', this.addprice)
+        formData.append('stock', this.addstock)
+        axios.post('http://localhost:3000/addproduct', formData).then(response => {
+          this.addtitle = ''
+          this.addprice = 0
+          this.addstock = 0
+          this.showproduct()
+        })
+      } else {
+        axios.post('http://localhost:3000/unaddproduct', {
+          title: this.addtitle,
+          price: this.addprice,
+          stock: this.addstock
+        }).then(response => {
+          this.addtitle = ''
+          this.addprice = 0
+          this.addstock = 0
+          this.showproduct()
+        })
+      }
     },
     deleteproduct (id) {
       axios.delete(`http://localhost:3000/deleteproduct/${id}`).then(response => {
@@ -196,7 +216,7 @@ export default {
   },
   filters: {
     capitalize: function (value) {
-      return 'Rp. ' + value.toLocaleString()
+      return 'Rp.' + value.toLocaleString()
     }
   }
 }
