@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Football In Style</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <form class="form-inline">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                </form>
+                <div class="d-flex justify-content-end">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item dropdown">
+
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <!-- <li v-for="cart in carts"></li>
+                                        {{ cart.text }}
+                                </li> -->
+
+                                <i class="fas fa-shopping-cart"></i>
+                                {{ totalQty }}
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <ul>
+                                    <li v-for="cart in carts">
+                                        <button class="remove" v-on:click="removeCart(cart)">
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                        <p>{{ cart.name }}</p>
+                                        <p>IDR {{ cart.price }}</p>
+                                        <p>Quantity :
+                                            <br>
+
+                                            <button v-on:click="addQty(cart)">
+                                                <i class="fa fa-plus-square"></i>
+                                            </button>
+                                            <input type='text' name='quantity' :value="cart.qty" class='qty' />
+                                            <button v-on:click="minQty(cart)">
+                                                <i class="fa fa-minus-square"></i>
+                                            </button>
+                                        </p>
+                                        <HR>
+                                    </li>
+                                    <li>
+                                        <a href="index.html">
+                                            <div v-if='carts.length === 0'>
+                                                <button disabled="disabled">Check Out</button</a>
+                                            </div>
+                                            <div v-else>
+                                                <button v-on:click="buyproduct()">Check Out</button</a>
+                                            </div>
+
+
+
+                                    </li>
+                                    <!-- <a class="dropdown-item" href="#">Item 1</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Item 2</a> -->
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Jersey</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Topwear</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Bottomwear</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Footwear</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Accessories</a>
+                        </li>
+                        <div v-if="checkToken===null">
+                                <li>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal" data-whatever="@getbootstrap">LOGIN</button>
+                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#registerModal" data-whatever="@getbootstrap">REGISTER</button>
+                                </li>
+                            </div>
+                        <div v-else>
+                            <li>
+                                <button type="button" class="btn btn-warning" v-on:click="logout">LOGOUT</button>
+                            </li>
+                            
+                        </div>
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container-fluid">
+
+            <div class="row">
+
+                <div class="col-md-12 title d-flex justify-content-center align-content-center flex-wrap">
+
+                    <h1>Football Apparel</h1>
+
+                </div>
+
+
+
+
+            </div>
+
+
+            <div class="row product">
+
+                <div v-for="product in products" class="col-6 col-md-3 d-flex justify-content-center align-content-center flex-wrap img-prd">
+                    <img :src="product.link">
+                    <div class="col-md-12 d-flex justify-content-center align-content-center flex-wrap name-prd">
+                        <label :id="product._id">{{product.name}}</label>
+
+                    </div>
+                    <div class="col-md-12 nopadding d-flex justify-content-center align-content-center flex-wrap price-prd">
+                        <price>IDR {{product.price}}
+                        </price>
+                    </div>
+                    <div col-md-12 nopadding d-flex justify-content-center align-content-center flex-wrap button-prd>
+                        <button type="button" class="btn btn-outline-success" v-on:click="addChart(product)">Add To Chart</button>
+                        <button type="button" class="btn btn-outline-primary">Detail</button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">LOGIN</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Email:</label>
+                                <input type="text" class="form-control" id="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Password:</label>
+                                <input type="password" class="form-control" id="password" required>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" v-on:click="login">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Register</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label" required>Email:</label>
+                                <input type="text" class="form-control" id="emailReg">
+                            </div>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label" required>Name:</label>
+                                <input type="text" class="form-control" id="nameReg">
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label" required>Password:</label>
+                                <input type="password" class="form-control" id="passwordReg">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" v-on:click="register()">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+    <script src="./js/vue.js"></script>
+</body>
+
+</html>
