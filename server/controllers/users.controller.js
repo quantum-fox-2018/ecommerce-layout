@@ -1,4 +1,8 @@
 const {User} = require('../models/users')
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+const salt = bcrypt.genSaltSync(saltRounds);
+const jwt = require('jsonwebtoken');
 
 module.exports = {
     getAllUser (req, res) {
@@ -12,22 +16,16 @@ module.exports = {
         })
     },
     addUser (req, res) {
-        const {username, email, password} = req.body
+        const hash = bcrypt.hashSync(req.body.password, salt)
         const user = new User()
-        user.username = username
-        user.email = email
-        user.password = password
+        user.username = req.body.username
+        user.email = req.body.email
+        user.password = hash
         user.save()
-        .then(userData => {
+        .then(data => {
             res.status(201).json({
-                message: 'New User added',
-                userData
-            })
-        })
-        .catch(err => {
-            res.status(400).json({
-                message: 'Failed add new User',
-                err
+                message: 'Success create account',
+                data
             })
         })
     },
@@ -56,6 +54,30 @@ module.exports = {
             } else {
                 res.status(200).json({
                     message: 'Delete successfull'
+                })
+            }
+        })
+    },
+    login (req, res) {
+        User.findOne({email: req.body.email})
+        .exec()
+        .then(user => {
+            if(user){
+                let check = bcrypt.compareSync(req.body.password, user.password)
+                if(check){
+                    let token = jwt.sign({_id: user._id, email: user.email, username: user.username}, process.env.SECRET)
+                    res.status(200).json({
+                        message: 'Login successful',
+                        token
+                    })
+                } else {
+                    res.status(409).json({
+                        message: 'Password incorrect'
+                    })
+                }
+            } else {
+                res.status(409).json({
+                    message: 'Email not found'
                 })
             }
         })

@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const { getAllItems, addItems, editItems, deleteItems } = require('../controllers/items.controller')
+const { getAllItem, getItem, addItem, editItem, deleteItem } = require('../controllers/items.controller')
 const { addToCart, showCart} = require('../controllers/itemCons')
+const { getPublicUrl, sendFileGCS, multer } = require('../middlewares/uploadGCS')
 
-/* GET users listing. */
-router.get('/', getAllItems)
-router.post('/', addItems)
-router.put('/:_id', editItems)
-router.delete('/:_id', deleteItems)
+router.get('/', getAllItem)
+router.get('/:_id', getItem)
+router.post('/', multer.single('img'), sendFileGCS, addItem)
+router.put('/:_id', editItem)
+router.delete('/:_id', deleteItem)
 router.get('/cart', showCart)
 router.post('/cart', addToCart)
 

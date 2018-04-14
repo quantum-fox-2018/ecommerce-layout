@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "precise-treat-197911",
+  "private_key_id": "149f5cc93dce32347124eeb452b0970c7f602365",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCPitzViVjUbqw9\nREGzsMU7BMsmaVJXq7Z41Zus8X4QvLlqJWVARmJqWOGlEWAfd9/9zAhrNg3Q9Fv4\nhZS6IvOqBkKC9NJpixn65iCOFkyQe+qyXgb4xyFqr2L+WOKoFPcRNbfsnFr5sDcL\nEt+4ePutjAk0iWfddunbAeF6X+Bnho1rFOAkjUd8Ry64Bn+0gocvytToJm0bRyEm\nwnoL/+QfPACrQVqJFRr+dQO0IgLG6KiH98dnTExYmSWSDgsLnB2ns/fwAxTjpn9O\nimFMBWPrQ6btRnmVp5ku+DowlFNfr+fjlUmMizDMYzHlcYodXs8IdrPLlaGOLtaf\n+YMyqFP/AgMBAAECggEAMbIYUZ+bDvUAEbgLbSwypIO816AYH302D/CYVJBJHn9Q\nTCUFQHL9yKbb/DufRVXJyUL12TReJS0smEabHrRSGtfO+CrNnDfJ91jsBXVH7a/R\nKg6uqDu84IQ3KCra0elsPluUQUlCn/Z3oBBZPzM3ozZ7y2IVARIV1bp5d1YxSXXB\nu3jX5RislDSqHvsgQTWA92kJBFZpQwPcNubE4SLJmioCxezg7a9VfTQzRn2s7VMA\nUaq3+1E4ulndRI7KRpcrHHtkhy2BtPQFhceaxLclSyDsUnM/NZutMYVDrgZQPNwM\naH5tfZ/d4RXO9c9sRCYZFqB+pF8K9CXZ1xnt/1IE9QKBgQDF+cV0hGtGotsXA6Mq\n4NCWbJ/tqTjCu2//RN6+QA1d7OCEdsDHqZhSaG3rKjd42sHpcq3mJzNtV6eC/fb0\nF1CeSm5GZQYhR6tF7+keP/KDqWPIDsrd7RNBPjw2S1tTk/mLVm7pUZPPQoaJ9SoQ\n7e681DnGlF3HSGQaSQOsAcS/GwKBgQC5nO8j+xC9HVpaOHBFH4pbzYT9wxEwKoRG\nXitWHhnQTtnGEvCiuu2o7RyLauURSv1E99FPi2VcrQE7bUKMDEtArmrxg+y5AGJM\nRrEv3OVYJ/G8xLTk+EbG3sLwyOieL8xkyv4V2pXEq1jWz7rSXQWJZHtrM05+UloS\naSOxTPi47QKBgFgQIqURwiZJiutR0uLf3ekLqJgvDfCRL+B84hf+pfOByt0hdd9a\nsUb27O4OeV5o8JjHSlN2XInm07yQ+6jYNiQzN5pYlcF3/9e8QBYUm+u1DY2QBu1w\n53++D0qXeqhSyk4QxIVEpFstXGtBgtTFAc09GfYbSRu8N8r5b4izwLDBAoGAdMEK\njA95T/wOwYGO3Wwhk+2LIjR5s1qLKdhCWkFE64st4TI4u6PpqsC7m9b5kA8jkSZx\nOx/r+oe4prDrkzyIeX89Nf5OAXEEZAZzni/M887seFkjkIO7wYyOAvfdmuNmJmCp\nwwVj//noP/cbBQgOW4YhPCVh0oPqtHn+QaCxM2ECgYEAxH0ZsK3mhiDC5U9Sdzqg\nlSUVAHIBea2OOIpMj6/tuSn//p3Ypxt9OYPW5LrNFL3NH977A1tYBDSr3NJRZ4FI\nN2/1LzqEom03Bcs2p9KsOfMYWjcqmdvqla9cBJ4BlbYXpAHAnf6NMKjWXl/5mA5V\nN3gZW8vv6syvMvc/Ta0BuGw=\n-----END PRIVATE KEY-----\n",
+  "client_email": "dj-store@precise-treat-197911.iam.gserviceaccount.com",
+  "client_id": "113514186772496963818",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/dj-store%40precise-treat-197911.iam.gserviceaccount.com"
+}

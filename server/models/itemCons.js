@@ -7,7 +7,7 @@ const itemConsSchema = new Schema({
     ref: 'User'
   },
   itemId: {
-    type: SChema.Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'Item'
   },
   quantity: Number,

@@ -1,4 +1,5 @@
 const {Item} = require('../models/items')
+const {getPublicUrl} = require('../middlewares/uploadGCS')
 
 module.exports = {
     getAllItem (req, res) {
@@ -11,12 +12,24 @@ module.exports = {
             })
         })
     },
+    getItem (req, res) {
+        Item.findById(req.params._id)
+        .then(item => {
+            res.status(200).json({
+                message: 'This item',
+                item
+            })
+        })
+    },
     addItem (req, res) {
-        const {artist, album, price} = req.body
+        console.log('masuk add item');
+        
+        const {name, price, brand} = req.body
         const item = new Item()
-        item.artist = artist
-        item.album = album
+        item.name = name
         item.price = price
+        item.brand = brand
+        item.img = req.file.cloudStoragePublicUrl
         item.save()
         .then(itemData => {
             res.status(201).json({

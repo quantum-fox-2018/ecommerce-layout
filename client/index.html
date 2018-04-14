@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.15/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="./assets/style/style.css">
   <title>DJ-Store</title>
@@ -154,7 +155,7 @@
               <img class="card-img-top" :src="product.img" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">{{product.name}}</h5>
-                <p class="card-price">Rp {{product.price}},-</p>
+                <p class="card-price">{{product.price | currency}}</p>
                 <a id="card-cart" class="btn bg-muted btn-outline-info text-info d-none d-sm-block"><i class="fas fa-cart-plus"></i> Add to Cart</a>
                 <a id="card-cart" class="btn bg-muted btn-outline-info text-info d-block d-sm-none"><i class="fas fa-cart-plus"></i></a>
               </div>

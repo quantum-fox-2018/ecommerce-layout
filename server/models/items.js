@@ -2,10 +2,10 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const itemSchema = new Schema({
-  image: String,
-  artist: String,
-  album: String,
+  img: String,
+  name: String,
   price: Number,
+  brand: String
 })
 
 const Item = mongoose.model('Item', itemSchema)
