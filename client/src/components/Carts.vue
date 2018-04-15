@@ -11,24 +11,24 @@
         <div class="modal-body">
           <form>
             <div class="container">
-              <div class="row">
+              <div class="row" v-for="(cart, i) in carts" :key="i">
                 <div class="col-xs-8 col-md-4">
-                  <a class="thumbnail pull-left" href="#"><img class="img-responsive" src="" alt="cake"></a>
-                  <p>cake</p>
+                  <a class="thumbnail pull-left" href="#"><img class="img-responsive" :src="cart.itemId.image" alt="cake"></a>
+                  <p>{{cart.itemId.name}}</p>
                 </div>
                 <div class="col-xs-4 col-md-2">
-                  <p> 1 @ $ 10</p>
+                  <p> {{cart.qty}} @ $ {{cart.itemId.price}}</p>
                 </div>
                 <div class="col-xs-4 col-md-2">
-                  <p>$ 10 </p>
+                  <p>$ {{cart.itemId.price}} </p>
                 </div>
                 <div class="col-xs-2 col-md-1">
-                  <button type="button" class="btn btn-danger">Remove</button>
+                  <button type="button" class="btn btn-danger" @click="removeCart(cart)"><i class="far fa-trash-alt"></i></button>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-offset-6">
-                  <p>Grand Total: $ 10</p>
+                  <p>Grand Total: $ {{grandTotal}}</p>
                 </div>
               </div>
             </div>
@@ -36,7 +36,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Checkout</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" @click="checkOut">Checkout</button>
         </div>
       </div>
     </div>
@@ -50,7 +50,31 @@ export default {
     carts: function () {
       console.log('carts:', this.$store.getters.getCarts)
       return this.$store.getters.getCarts
+    },
+    grandTotal: function () {
+      let sum = 0
+      let carts = this.$store.getters.getCarts
+      for (let i = 0; i < carts.length; i++) {
+        sum += carts[i].qty * carts[i].unitPrice
+      }
+      return sum
     }
+  },
+  created: function () {
+    this.$store.dispatch('showCart')
+  },
+  methods: {
+    removeCart: function (data) {
+      this.$store.dispatch('removeCart', data)
+    },
+    checkOut: function () {
+      this.$store.dispatch('checkOut').then(() => {
+        this.$router.push({path: '/checkout'})
+      })
+    }
+  },
+  updated: function () {
+    // this.$store.dispatch('showCart')
   }
 }
 </script>

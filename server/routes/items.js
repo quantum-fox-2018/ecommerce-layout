@@ -13,7 +13,7 @@ const upload = multer({
 
 router.get('/', showItem)
 // router.post('/', addItem)
-router.post('/', upload.single('image'), sendUploadGCS, addItem)
+router.post('/upload', upload.single('image'), sendUploadGCS, addItem)
 router.delete('/:id', removeItem)
 
 module.exports = router;

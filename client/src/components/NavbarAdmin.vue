@@ -10,18 +10,7 @@
             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Shop
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Cakes</a>
-              <a class="dropdown-item" href="#">Cupcakes</a>
-              <a class="dropdown-item" href="#">Chocolates</a>
-              <a class="dropdown-item" href="#">Drinks</a>
-            </div>
+            <a class="nav-link" href="#">List item</a>
           </li>
         </ul>
         <ul class="navbar-nav">
@@ -40,12 +29,6 @@
           <li class="nav-item" v-if="activeUser !== ''">
             <button type="button" class="btn btn-danger" @click="logOutButton">Log Out</button>
           </li>
-          <li class="nav-item">
-              <!-- <a class="nav-link" href="#">Cart</a> -->
-              <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#cartModal">
-                <span id="cartTotal" class="badge">{{cartTotal}}</span><span><i class="fas fa-shopping-cart"></i></span>
-              </button>
-            </li>
         </ul>
       </div>
     </nav>
@@ -53,16 +36,8 @@
 
 <script>
 export default {
-  name: 'Navbar',
+  name: 'NavbarAdmin',
   computed: {
-    cartTotal: function () {
-      let count = 0
-      let carts = this.$store.getters.getCarts
-      for (let i = 0; i < carts.length; i++) {
-        count += carts[i].qty
-      }
-      return count
-    },
     activeUser: function () {
       return this.$store.getters.getActiveUser
     }
@@ -74,7 +49,6 @@ export default {
       location.reload()
     }
   }
-
 }
 </script>
 
@@ -82,15 +56,5 @@ export default {
 .navbar-nav button {
   margin-right: 5px;
   margin-left: 5px;
-}
-.badge {
-  background-color: white;
-  margin-right: 5px;
-  border-radius: 2px;
-  color: #00979d;
-  display: inline-block;
-  font-size: 14px;
-  padding: 3px 7px;
-  text-align: center;
 }
 </style>

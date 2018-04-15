@@ -32,7 +32,7 @@ export default {
   methods: {
     addCart: function (item) {
       console.log('items:ini item carts', item)
-      this.$store.commit('addCart', item)
+      this.$store.dispatch('addCart', item)
     }
   }
 }

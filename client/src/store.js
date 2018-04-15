@@ -26,6 +26,7 @@ const store = new Vuex.Store({
       }
     ],
     carts: [],
+    total: 0,
     activeUser: {
       userId: localStorage.getItem('userId') || '',
       token: localStorage.getItem('token') || '',
@@ -42,24 +43,17 @@ const store = new Vuex.Store({
     },
     getCarts: function (state) {
       return state.carts
+    },
+    getActiveUser: function (state) {
+      return state.activeUser.token
     }
   },
   mutations: {
     getItems: function (state, payload) {
       state.items = payload
     },
-    addCart: function (state, payload) {
-      console.log('store:state', state, 'payload', payload)
-      // let data = {
-      //   id: payload.id,
-      //   name: payload.name,
-      //   description: payload.description,
-      //   price: payload.price,
-      //   category: payload.category,
-      //   image: payload.image,
-      //   qty: 1
-      // }
-      // state.carts.push(data)
+    showCart: function (state, payload) {
+      state.carts = payload
     }
   },
   actions: {
@@ -87,6 +81,9 @@ const store = new Vuex.Store({
         }
       }).then(response => {
         console.log('respon signup', response)
+        // document.querySelectorAll('#signInModal').modal('show')
+      }).catch(error => {
+        console.log(error)
       })
     },
     signIn: function (context, payload) {
@@ -102,6 +99,96 @@ const store = new Vuex.Store({
         localStorage.setItem('userId', response.data.data.id)
         localStorage.setItem('token', response.data.data.token)
         localStorage.setItem('name', response.data.data.name)
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+    addCart: function (context, payload) {
+      // let self = this
+      axios({
+        method: 'post',
+        url: 'http://localhost:3000/transactions',
+        data: payload,
+        headers: {
+          userid: context.state.activeUser.userId,
+          token: context.state.activeUser.token
+        }
+      }).then(response => {
+        console.log('store:response addcart', response)
+        context.dispatch('showCart')
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+    showCart: function (context, payload) {
+      console.log('===stateactive', context)
+      axios({
+        method: `GET`,
+        url: `http://localhost:3000/transactions`,
+        headers: {
+          userid: context.state.activeUser.userId,
+          token: context.state.activeUser.token
+        }
+      }).then(response => {
+        console.log('---', response.data)
+        context.commit('showCart', response.data.listTransaction)
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+    removeCart: function (context, payload) {
+      let check = confirm('remove item from cart?')
+      console.log('data remove', payload)
+      if (check === true) {
+        axios({
+          method: 'DELETE',
+          url: 'http://localhost:3000/transactions/' + payload._id,
+          headers: {
+            token: context.state.activeUser.token,
+            userid: context.state.activeUser.userId
+          }
+        }).then(response => {
+          alert('item deleted!')
+          context.dispatch('showCart')
+        }).catch(error => {
+          // alert('something wrong!')
+          console.log(error)
+        })
+      }
+    },
+    checkOut: function (context, payload) {
+      let data = context.state.carts
+      let check = confirm('buy all?')
+      if (check === true) {
+        for (let i = 0; i < data.length; i++) {
+          axios({
+            method: 'PUT',
+            url: 'http://localhost:3000/transactions/' + data[i]._id,
+            headers: {
+              token: context.state.activeUser.token,
+              userid: context.state.activeUser.userId
+            }
+          }).then(response => {
+            context.dispatch('showCart')
+          }).catch(error => {
+            // alert('something wrong!')
+            console.log(error)
+          })
+        }
+      }
+    },
+    uploadFile: function (context, payload) {
+      axios({
+        method: 'POST',
+        url: 'http://localhost:3000/items/upload',
+        headers: {
+          'Content-type': 'multipart/form-data'
+        },
+        data: payload
+      }).then(response => {
+        console.log('respon upload==', response)
+      }).catch(error => {
+        console.log(error)
       })
     }
   }

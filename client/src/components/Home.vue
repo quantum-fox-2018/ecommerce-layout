@@ -1,4 +1,6 @@
 <template>
+<div>
+<navbar></navbar>
   <div class="container" style="width:100%">
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
@@ -8,10 +10,10 @@
       </ol>
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img class="d-block w-100" src="../../static/images/cakes.jpeg" alt="breads">
+          <img class="d-block w-100" src="https://images.pexels.com/photos/929247/pexels-photo-929247.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="breads">
         </div>
         <div class="carousel-item">
-          <img class="d-block w-100" src="../../static/images/cakes.jpeg" alt="cakes">
+          <img class="d-block w-100" src="../../static/images/workshop.jpg" alt="cakes">
         </div>
         <div class="carousel-item">
           <img class="d-block w-100" src="../../static/images/chocolates.jpeg" alt="chocolates">
@@ -27,11 +29,31 @@
       </a>
     </div>
   </div>
+  <category></category>
+  <items></items>
+  <login></login>
+  <signup></signup>
+  <carts></carts>
+</div>
 </template>
 
 <script>
+import Navbar from '@/components/Navbar'
+import Category from '@/components/Category'
+import Items from '@/components/Items'
+import Login from '@/components/Login'
+import Signup from '@/components/Signup'
+import Carts from '@/components/Carts'
 export default {
-  name: 'Home'
+  name: 'Home',
+  components: {
+    Navbar,
+    Category,
+    Items,
+    Login,
+    Signup,
+    Carts
+  }
 
 }
 </script>

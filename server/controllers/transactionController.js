@@ -7,13 +7,14 @@ module.exports = {
     let input = {
       userId: req.headers.userid,
       itemId: req.body._id,
-      unitPrice: req.body.unitPrice,
+      unitPrice: req.body.price,
       qty: 1
     }
     console.log('inputforcreate==', input)
     Transaction.findOne({
       userId: req.headers.userid,
-      itemId: req.body._id
+      itemId: req.body._id,
+      status: 'pending'
     })
     .exec()
     .then(dataTransaction => {
@@ -59,7 +60,7 @@ module.exports = {
     })
   },
   showTransaction: function (req,res){
-    console.log(req.headers.userid)
+    console.log('====headers',req.headers.userid)
     Transaction.find({
       userId: req.headers.userid,
       status: 'pending'
@@ -77,8 +78,9 @@ module.exports = {
     })
   },
   removeTransaction: function (req, res) {
+    console.log("params===",req.params.id)
     let id = {_id: req.params.id}
-
+    console.log("remove id",id)
     Transaction.findOneAndRemove(id, (error, deletedTrans) =>{
       if(error){
         res.status(400).json({

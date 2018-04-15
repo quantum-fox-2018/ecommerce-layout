@@ -53,7 +53,9 @@ export default {
   methods: {
     signUpButton: function () {
       console.log('signup', this.objNewuser)
-      this.$store.dispatch('signUp', this.objNewuser)
+      this.$store.dispatch('signUp', this.objNewuser).then(() => {
+        document.querySelectorAll('#signInModal').modal('show')
+      })
     }
   }
 }
