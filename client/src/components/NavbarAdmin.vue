@@ -14,13 +14,13 @@
           </li>
         </ul>
         <ul class="navbar-nav">
-          <li class="nav-item active" v-if="activeUser === ''">
+          <li class="nav-item active" v-if="activeUser.token === ''">
             <!-- <a class="nav-link" href="#" data-toggle="modal" data-target="#signInModal">Log In</a> -->
             <button type="button" class="btn btn-light" data-toggle="modal" data-target="#signInModal">
               Log In
             </button>
           </li>
-          <li class="nav-item" v-if="activeUser !== ''">
+          <li class="nav-item" v-if="activeUser.token !== ''">
             <button type="button" class="btn btn-danger" @click="logOutButton">Log Out</button>
           </li>
         </ul>
