@@ -3,11 +3,11 @@
     <navbar-admin></navbar-admin>
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
-        <h1 class="display-4">Hello, Admin!</h1>
+        <h1 class="display-4">Hello, {{activeUser.name}} !</h1>
         <p class="lead">If I won the award for laziness, I would send somebody to pick it up for me.</p>
       </div>
     </div>
-    <div class="container" id="addItem">
+    <div class="container" id="addItem" v-if="activeUser.token !== ''">
       <h2>Add New Item:</h2>
       <form>
         <div class="form-group">
@@ -44,6 +44,9 @@
         <button type="button" class="btn btn-primary" @click="uploadFile">Submit</button>
       </form>
     </div>
+    <div class="jumbotron" v-else id="nologin">
+      <h3 data-toggle="modal" data-target="#signInModal">Log in to add new item</h3>
+    </div>
   </div>
 </template>
 
@@ -62,6 +65,11 @@ export default {
       price: '',
       category: '',
       image: ''
+    }
+  },
+  computed: {
+    activeUser: function () {
+      return this.$store.getters.getActiveUser
     }
   },
   methods: {
@@ -93,12 +101,18 @@ h2{
   background-color: #f1f1f2;
   max-width: 700px;
   margin-bottom: 10px;
+  margin-top: 20px;
 }
 
-.jumbotron {
+.jumbotron-fluid {
   background-image: url('https://images.pexels.com/photos/692901/pexels-photo-692901.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
   min-height: 350px;
   background-size: cover;
   background-repeat: no-repeat;
+  margin-bottom: 0px;
+}
+#nologin{
+cursor: pointer;
+margin: 0px;
 }
 </style>

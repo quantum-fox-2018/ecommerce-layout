@@ -8,8 +8,7 @@ module.exports = {
       name: req.body.name,
       email: req.body.email,
       password: req.body.password,
-      address: req.body.address,
-      role: 'user'
+      address: req.body.address
     }
 
     User.findOne({
@@ -79,5 +78,26 @@ module.exports = {
         err
       })
     })
+  },
+  signInAdmin: function(req, res) {
+    let email =  req.body.email
+    let password = req.body.password
+    let id = 'admin001'
+
+    if(email === 'admin@admin.com' && password === 'admin'){
+      let token = jwt.sign({id:id, email: email},'secret')
+      res.status(200).json({
+        message: 'login admin success',
+        admin: {
+          id,
+          email,
+          token
+        }
+      })
+    }else{
+      res.status(400).json({
+        message: 'admin only!'
+      })
+    }
   }
 }

@@ -12,8 +12,7 @@ const userSchema = new Schema({
     unique: true
   },
   password: String,
-  address: String,
-  role: String
+  address: String
 },{
   timestamps: true
 });

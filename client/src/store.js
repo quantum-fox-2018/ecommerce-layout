@@ -45,7 +45,7 @@ const store = new Vuex.Store({
       return state.carts
     },
     getActiveUser: function (state) {
-      return state.activeUser.token
+      return state.activeUser
     }
   },
   mutations: {
@@ -176,6 +176,23 @@ const store = new Vuex.Store({
           })
         }
       }
+    },
+    signInAdmin: function (context, payload) {
+      axios({
+        method: 'post',
+        url: 'http://localhost:3000/users/signinadmin',
+        data: {
+          email: payload.email,
+          password: payload.password
+        }
+      }).then(response => {
+        console.log('signin', response)
+        localStorage.setItem('userId', response.data.admin.id)
+        localStorage.setItem('token', response.data.admin.token)
+        localStorage.setItem('name', 'admin o-tasty')
+      }).catch(error => {
+        console.log(error)
+      })
     },
     uploadFile: function (context, payload) {
       axios({

@@ -64,7 +64,7 @@ export default {
       return count
     },
     activeUser: function () {
-      return this.$store.getters.getActiveUser
+      return this.$store.getters.getActiveUser.token
     }
   },
   methods: {
