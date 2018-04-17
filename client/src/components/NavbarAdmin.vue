@@ -10,7 +10,8 @@
             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">List item</a>
+            <!-- <a class="nav-link" href="#">List item</a> -->
+            <router-link :to="{ name: 'AdminListItems' }" class="nav-link">List item</router-link>
           </li>
         </ul>
         <ul class="navbar-nav">
@@ -81,6 +82,7 @@ export default {
     logOutButton: function () {
       alert('log out?')
       localStorage.clear()
+      this.$router.push({name: 'Admin'})
       location.reload()
     }
   }

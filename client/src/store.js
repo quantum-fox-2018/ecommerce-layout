@@ -204,7 +204,24 @@ const store = new Vuex.Store({
         data: payload
       }).then(response => {
         console.log('respon upload==', response)
+        context.dispatch('getItems')
       }).catch(error => {
+        console.log(error)
+      })
+    },
+    removeItem: function (context, payload) {
+      axios({
+        method: 'DELETE',
+        url: 'http://localhost:3000/items/' + payload._id,
+        headers: {
+          token: context.state.activeUser.token,
+          userid: context.state.activeUser.userId
+        }
+      }).then(response => {
+        alert('item deleted!')
+        context.dispatch('getItems')
+      }).catch(error => {
+        // alert('something wrong!')
         console.log(error)
       })
     }

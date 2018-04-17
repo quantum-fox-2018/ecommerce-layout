@@ -83,7 +83,7 @@ export default {
       formData.append('image', this.image)
       this.$store.dispatch('uploadFile', formData).then(() => {
         alert('success add item')
-        location.reload()
+        this.$router.push({name: 'AdminListItems'})
       })
     },
     handleUpload: function (event) {

@@ -7,7 +7,8 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 require('dotenv').load();
 
-mongoose.connect('mongodb://localhost:27017/ecommerce2')
+// mongoose.connect('mongodb://localhost:27017/ecommerce2')
+mongoose.connect('mongodb://otasty:tasty123@ds117935.mlab.com:17935/otastyecom')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');

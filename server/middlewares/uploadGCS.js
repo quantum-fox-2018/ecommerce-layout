@@ -1,7 +1,7 @@
 const multer = require('multer')
 const Storage = require('@google-cloud/storage');
 const config = {
-  CLOUD_BUCKET: 'o-tasty.haripermadi.com',
+  CLOUD_BUCKET: 'bucket-otasty',
   PROJECT_ID: 'phase2project',
 }
 
