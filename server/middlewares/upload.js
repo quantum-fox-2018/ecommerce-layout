@@ -15,13 +15,6 @@ function getPublicUrl(filename) {
   return `https://storage.googleapis.com/${BUCKET_CONFIG}/${filename}`;
 }
 
-const uploaderMem = multer({
-  storage: multer.memoryStorage(),
-  limits: {
-      fileSize: 10 * 1024 * 1024
-  }
-})
-
 module.exports = {
   upload(req, res, next) {
     if (!req.file) return next()
@@ -48,5 +41,11 @@ module.exports = {
         })
     })
     stream.end(req.file.buffer)
-  }
+  },
+  multer: Multer({
+    storage: Multer.MemoryStorage,
+    limits: {
+      fileSize: 5 * 1024 * 1024
+    }
+  })
 }
