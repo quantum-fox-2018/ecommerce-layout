@@ -27,8 +27,8 @@ var app = new Vue({
       })
   },
   watch: {
-    cart: function () {
-      this.totalPrice()
+    cartPrice: function () {
+      car
     }
   },
   computed: {
