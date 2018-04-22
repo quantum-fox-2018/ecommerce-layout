@@ -18,7 +18,7 @@ var app = new Vue({
     buyed: []
   },
   created: function () {
-    axios.get('http://localhost:3000/products', {})
+    axios.get('http://http://35.197.130.80//products', {})
       .then(res => {
         this.products = res.data.data
       })
@@ -103,7 +103,7 @@ var app = new Vue({
 
         axios({
           method: 'post',
-          url: 'http://localhost:3000/products',
+          url: 'http://http://35.197.130.80//products',
           data: this.admin.formData,
           // headers: {
           //   token: token
@@ -121,7 +121,7 @@ var app = new Vue({
 
         axios({
           method: 'delete',
-          url: 'http://localhost:3000/products/' + id,
+          url: 'http://http://35.197.130.80//products/' + id,
           // headers: {
           //   token: token
           // }
