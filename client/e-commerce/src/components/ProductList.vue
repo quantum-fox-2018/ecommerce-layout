@@ -1,28 +1,49 @@
 <template>
-    <div class="container" style="display:table; margin:0 auto">
-      <div class="row">
-        <div class="col-12 mb40 text-center">
-            <h1>Item List</h1>
+    <div class="container-fluid" style="padding-top: 30px">
+      <NavBar></NavBar>
+      <div class="fixed-bottom" style="margin-bottom:20px">
+        <div class="row justify-content-center">
+          <Cart></Cart>
+          <AddItem style="margin-left:10px"></AddItem>
         </div>
       </div>
-      <div class="row container-fluid">
-          <Product v-for="(item,index) in shopList" :key="index"
+      <div class ="container" style="margin-bottom:20px">
+        <div class="row justify-content-center">
+          <div class ="col-md-8 ">
+            <carousel-depan></carousel-depan>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center jumbotron">
+          <Product v-for="(item,index) in items" :key="index"
           v-bind:item="item"></Product>
       </div>
     </div>
 </template>
 
 <script>
+import AddItem from '@/components/AddItem'
+import CarouselDepan from '@/components/CarouselDepan'
+import Cart from '@/components/Cart'
+import NavBar from '@/components/NavBar'
 import Product from '@/components/Product'
-import {mapGetters} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 export default {
   components: {
-    Product
+    Product, NavBar, Cart, CarouselDepan, AddItem
+  },
+  methods: {
+    ...mapActions([
+      'fetchData'
+    ])
   },
   computed: {
     ...mapGetters([
-      'shopList'
+      'items'
     ])
+  },
+  created () {
+    this.fetchData()
   }
 }
 </script>

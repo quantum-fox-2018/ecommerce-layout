@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 
 class Auth {
   static login (req,res,next) {
-    // console.log(req.headers.token)
+    console.log(req.headers.token)
     jwt.verify(req.headers.token, 'secret key', (err, decoded) => {
       if(err){
         res.status(403).json({
@@ -19,7 +19,7 @@ class Auth {
     if(req.decoded && req.decoded.role === 'admin') {
       return next()
     } else {
-      res.status(403).json({
+      res.status(407).json({
         message : 'you must an admin to access this page'
       })
     }

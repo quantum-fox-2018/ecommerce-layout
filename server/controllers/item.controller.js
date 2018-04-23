@@ -1,34 +1,79 @@
 const itemSchema = require('../models/item.model')
+const transactionSchema = require('../models/transaction.model')
 
-class Items {
-  static read(req,res){
-    itemSchema.find()
+class Item {
+  static create(req,res){
+    let obj = {
+      name: req.body.name,
+      description: req.body.description,
+      price: req.body.price,
+      cartPrice: 0,
+      image: req.file.cloudStoragePublicUrl,
+      count: 0
+    }
+    // console.log(obj)
+    itemSchema.create(obj)
     .then(data => {
       res.status(200).json({
-        message:'list items:',
+        message: 'create item successfully',
         data
       })
     })
-    .catch(err=>{
-      res.status(500).json({message:err})
+    .catch(err => {
+      res.status(500).json({
+        message:'something went wrong',
+        err
+      })
     })
   }
 
-  static create (req,res){
-    let obj = {
-      name:req.body.name,
-      description:req.body.description,
-      price:Number(req.body.price),
-      image:req.body.image
-    }
-    itemSchema.create(obj)
-    .then(data=>{
+  static read(req,res){
+    itemSchema.find()
+    .then(item => {
       res.status(200).json({
-        message:'item has been created',
-        data
+        message:'list of item:',
+        item
       })
     })
-    .catch(err=>{
+    .catch(err => {
+      res.status(500).json({
+        message:'something went wrong',
+        err
+      })
+    })
+  }
+
+  static readOne(req,res){
+    let target = {
+      _id:req.params.id
+    }
+    itemSchema.find(target)
+    .then(item => {
+      res.status(200).json({
+        message: 'item:',
+        item
+      })
+    })
+    .catch(err => {
+      res.status(500).json({
+        message: 'something went wrong',
+        err
+      })
+    })
+  }
+
+  static delete(req,res) {
+    let target = {
+      _id:req.params.id
+    }
+    itemSchema.findOneAndRemove(target)
+    .then(item => {
+      res.status(200).json({
+        message:'delete item successfully',
+        item
+      })
+    })
+    .catch(err => {
       res.status(500).json({
         message:'something went wrong',
         err
@@ -37,49 +82,49 @@ class Items {
   }
 
   static update(req,res){
-    let target = {
-      _id:req.params.id
-    }
-    itemSchema.findOne(target)
-    .then(data=>{
-      data.name = req.body.name || data.name
+    itemSchema.findById(req.params.id)
+    .then(data => {
+      data.title = req.body.title || data.title
       data.description = req.body.description || data.description
-      data.price = Number(req.body.price) || data.price
-      data.image = req.body.image || data.image
+      data.text = req.body.text || data.text
+      data.image = req.file.cloudStoragePublicUrl
       data.save()
-      .then(updatedData=>{
+      .then(savedData=>{
         res.status(200).json({
           message:'update success',
-          updatedData
+          savedData,
+          id: req.params.id
         })
       })
       .catch(err=>{
         res.status(500).json({
-          message:'update error',
+          message:'update failed',
           err
         })
       })
     })
     .catch(err=>{
       res.status(500).json({
-        message:'something went wrong',
+        message:'data is not found',
         err
       })
     })
   }
 
-  static findOne (req,res) {
-    let target = {
-      _id:req.params.id
+  static transCreate(req,res){
+    let obj = {
+      userId: req.body.userId,
+      items: req.body.items,
+      totalPrice: req.body.totalPrice
     }
-    itemSchema.findOne(target)
-    .then(data=>{
+    transactionSchema.create(obj)
+    .then(data => {
       res.status(200).json({
-        message:'data found',
+        message:'transaction created',
         data
       })
     })
-    .catch(err=>{
+    .catch(err => {
       res.status(500).json({
         message:'something went wrong',
         err
@@ -87,14 +132,14 @@ class Items {
     })
   }
 
-  static delete (req,res){
-    let target = {
-      _id:req.params.id
-    }
-    itemSchema.findOneAndRemove(target)
+  static readTrans(req,res){
+    transactionSchema.find()
+    .populate('items')
+    .populate('userId')
+    .exec()
     .then(data=>{
       res.status(200).json({
-        message:'items successfully deleted',
+        message:'list of transaction:',
         data
       })
     })
@@ -107,4 +152,4 @@ class Items {
   }
 }
 
-module.exports = Items
+module.exports = Item

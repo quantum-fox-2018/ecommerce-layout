@@ -15,6 +15,8 @@ let itemSchema = new Schema({
     type:Number,
     required:true
   },
+  count:Number,
+  cartPrice:Number,
   image:String,
 },{timestamps:true})
 

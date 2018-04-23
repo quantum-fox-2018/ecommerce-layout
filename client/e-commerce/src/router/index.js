@@ -4,7 +4,6 @@ import Router from 'vue-router'
 import ProductList from '@/components/ProductList'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
-import Admin from '@/components/Admin'
 
 Vue.use(Router)
 
@@ -26,23 +25,18 @@ const router = new Router({
       path: '/productList',
       name: 'ProductList',
       component: ProductList
-    },
-    {
-      path: '/admin',
-      name: 'Admin',
-      component: Admin
     }
   ]
 })
 
-router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.auth)) {
-    if (localStorage.getItem('token')) {
-      next()
-    } else {
-      next({name: 'Login'})
-    }
-  }
-})
+// router.beforeEach((to, from, next) => {
+//   if (to.matched.some(record => record.meta.auth)) {
+//     if (localStorage.getItem('token')) {
+//       next()
+//     } else {
+//       next({name: 'Login'})
+//     }
+//   }
+// })
 
 export default router

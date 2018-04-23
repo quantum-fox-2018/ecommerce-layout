@@ -42,6 +42,7 @@ export default {
       }
       axios.post(`${url}/users/signup`, obj)
         .then(response => {
+          alert('sucess signup')
           console.log('terdaftar', response.data.data)
           this.toLogin()
         })
@@ -58,7 +59,8 @@ export default {
       }
       axios.post(`${url}/users/admin`, obj)
         .then(response => {
-          console.log('terdaftar', response.data.data)
+          alert('create user success')
+          console.log(response.data.data)
           this.toLogin()
         })
         .catch(err => {

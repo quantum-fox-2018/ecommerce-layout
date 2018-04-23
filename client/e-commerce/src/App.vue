@@ -1,22 +1,12 @@
 <template>
   <div id="app">
-    <NavBar v-if="!token"></NavBar>
     <router-view/>
   </div>
 </template>
 
 <script>
-import NavBar from '@/components/NavBar'
 export default {
-  name: 'App',
-  components: {
-    NavBar
-  },
-  data () {
-    return {
-      token: localStorage.getItem('token')
-    }
-  }
+  name: 'App'
 }
 </script>
 
