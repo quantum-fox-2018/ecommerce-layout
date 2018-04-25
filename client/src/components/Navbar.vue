@@ -17,10 +17,10 @@
               Shop
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Cakes</a>
-              <a class="dropdown-item" href="#">Cupcakes</a>
-              <a class="dropdown-item" href="#">Chocolates</a>
-              <a class="dropdown-item" href="#">Drinks</a>
+              <a class="dropdown-item" href="#items">Cakes</a>
+              <a class="dropdown-item" href="#items">Cupcakes</a>
+              <a class="dropdown-item" href="#items">Chocolates</a>
+              <a class="dropdown-item" href="#items">Drinks</a>
             </div>
           </li>
         </ul>

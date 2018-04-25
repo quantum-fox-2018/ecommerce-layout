@@ -4,7 +4,8 @@ import axios from 'axios'
 import swal from 'sweetalert2'
 Vue.use(Vuex)
 
-const serverUrl = 'http://ec2-18-222-96-137.us-east-2.compute.amazonaws.com'
+// const serverUrl = 'http://ec2-18-222-96-137.us-east-2.compute.amazonaws.com'
+const serverUrl = 'http://localhost:3000'
 const store = new Vuex.Store({
   state: {
     items: [],
