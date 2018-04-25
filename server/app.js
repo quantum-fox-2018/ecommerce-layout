@@ -10,10 +10,14 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var items = require('./routes/items')
 // var transactions = require('./routes/transaction')
-const localhost = `mongodb://localhost/eng-commerce`
-const mongoUri = `mongodb://agrha:daun10lembar@ds255588.mlab.com:55588/eng-commerce`
-mongoose.connect(mongoUri)
-
+mongoose.connect('mongodb://agrha:daun10lembar@ds155699.mlab.com:55699/eng-commerce2', (err) => {
+  if (!err) {
+    console.log('connect to Database');
+  }
+  else {
+    throw new Error(err)
+  }
+});
 var app = express();
 
 // view engine setup

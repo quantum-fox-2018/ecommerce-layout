@@ -1,7 +1,7 @@
 const userSchema = require('../models/user.model')
-const bcrypt = require('bcrypt')
+const bcryptjs = require('bcryptjs')
 const saltRounds = 10
-const salt = bcrypt.genSaltSync(saltRounds)
+const salt = bcryptjs.genSaltSync(saltRounds)
 const jwt = require('jsonwebtoken')
 
 class Users {
@@ -22,7 +22,7 @@ class Users {
   }
 
   static createAdmin(req,res){
-    let password = bcrypt.hashSync(req.body.password,salt)
+    let password = bcryptjs.hashSync(req.body.password,salt)
     let user = {
       username:req.body.username,
       password:password,
@@ -45,7 +45,7 @@ class Users {
   }
 
   static signup(req,res){
-    let password = bcrypt.hashSync(req.body.password,salt)
+    let password = bcryptjs.hashSync(req.body.password,salt)
     let user = {
       username:req.body.username,
       password:password,
@@ -75,7 +75,7 @@ class Users {
     userSchema.findOne(target)
     .then(user=>{
       if(user){
-        let clarify = bcrypt.compareSync(password,user.password)
+        let clarify = bcryptjs.compareSync(password,user.password)
         if(clarify){
           let payload = {
             _id:user._id,
