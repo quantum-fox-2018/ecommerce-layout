@@ -40,7 +40,7 @@
           <li class="nav-item" v-if="activeUser !== ''">
             <button type="button" class="btn btn-danger" @click="logOutButton">Log Out</button>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" v-if="activeUser !== ''">
               <!-- <a class="nav-link" href="#">Cart</a> -->
               <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#cartModal">
                 <span id="cartTotal" class="badge">{{cartTotal}}</span><span><i class="fas fa-shopping-cart"></i></span>
@@ -52,6 +52,7 @@
 </template>
 
 <script>
+import swal from 'sweetalert2'
 export default {
   name: 'Navbar',
   computed: {
@@ -69,9 +70,25 @@ export default {
   },
   methods: {
     logOutButton: function () {
-      alert('log out?')
-      localStorage.clear()
-      location.reload()
+      swal({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Log me out!'
+      }).then((result) => {
+        if (result.value) {
+          swal(
+            'Log out!',
+            'Your have been logged out',
+            'success'
+          )
+          localStorage.clear()
+          location.reload()
+        }
+      })
     }
   }
 

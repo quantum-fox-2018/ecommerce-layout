@@ -1,13 +1,12 @@
 const jwt = require('jsonwebtoken')
-
+const secret = process.env.SECRET
 module.exports={
   authUser : function(req,res,next){
     console.log("test masuk middleware",req.headers)
     let token = req.headers.token
     if(token){
       try{
-      
-        let decoded = jwt.verify(token,process.env.SECRET)
+        let decoded = jwt.verify(token, secret)
         next()
       }
       catch(err){

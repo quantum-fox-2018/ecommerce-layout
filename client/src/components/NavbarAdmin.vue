@@ -7,7 +7,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <router-link class="nav-link" to="/admin">Home <span class="sr-only">(current)</span></router-link>
           </li>
           <li class="nav-item">
             <!-- <a class="nav-link" href="#">List item</a> -->
@@ -58,6 +58,7 @@
 </template>
 
 <script>
+import swal from 'sweetalert2'
 export default {
   name: 'NavbarAdmin',
   data () {
@@ -80,10 +81,26 @@ export default {
       })
     },
     logOutButton: function () {
-      alert('log out?')
-      localStorage.clear()
-      this.$router.push({name: 'Admin'})
-      location.reload()
+      swal({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Log me out!'
+      }).then((result) => {
+        if (result.value) {
+          swal(
+            'Log out!',
+            'Your have been logged out',
+            'success'
+          )
+          localStorage.clear()
+          this.$router.push({name: 'Admin'})
+          location.reload()
+        }
+      })
     }
   }
 }

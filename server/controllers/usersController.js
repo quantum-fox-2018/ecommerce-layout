@@ -1,7 +1,7 @@
 const User = require('../models/users')
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-
+const secret = process.env.SECRET
 module.exports = {
   signUp: function (req, res) {
     let input = {
@@ -19,9 +19,15 @@ module.exports = {
       if(dataUser === null){
         User.create(input,(error, newUser) =>{
           if(!error){
+            let token = jwt.sign({id:newUser._id,email:newUser.email},secret)
             res.status(201).json({
               message: 'success adding new user',
-              newUser
+              data: {
+              id:newUser._id,
+              name:newUser.name,
+              email:newUser.email,
+              token :token
+              }
             })
           }else{
             res.status(400).json({
@@ -51,7 +57,7 @@ module.exports = {
       if(dataUser){
         let checkPass = bcrypt.compareSync(req.body.password,dataUser.password)
         if(checkPass){
-          let token = jwt.sign({id:dataUser._id,email:dataUser.email},'secret')
+          let token = jwt.sign({id:dataUser._id,email:dataUser.email}, secret)
           res.status(200).json({
             message:"login success",
             data:{
@@ -80,12 +86,14 @@ module.exports = {
     })
   },
   signInAdmin: function(req, res) {
+    console.log('masuk signin admin', req.body)
     let email =  req.body.email
     let password = req.body.password
     let id = 'admin001'
 
     if(email === 'admin@admin.com' && password === 'admin'){
-      let token = jwt.sign({id:id, email: email},'secret')
+      console.log('masuk signin')
+      let token = jwt.sign({id:id, email: email},secret)
       res.status(200).json({
         message: 'login admin success',
         admin: {

@@ -5,6 +5,7 @@ import Home from '@/components/Home'
 import Admin from '@/components/Admin'
 import Checkout from '@/components/Checkout'
 import AdminListItems from '@/components/AdminListItems'
+import store from '../store'
 
 Vue.use(Router)
 
@@ -23,12 +24,26 @@ export default new Router({
     {
       path: '/admin/listitems',
       name: 'AdminListItems',
-      component: AdminListItems
+      component: AdminListItems,
+      beforeEnter: (to, from, next) => {
+        if (store.state.activeUser.name === 'admin o-tasty') {
+          next()
+        } else {
+          next({path: '/admin'})
+        }
+      }
     },
     {
       path: '/checkout',
       name: 'Checkout',
-      component: Checkout
+      component: Checkout,
+      beforeEnter: (to, from, next) => {
+        if (store.state.activeUser.token !== '') {
+          next()
+        } else {
+          next({path: '/'})
+        }
+      }
     }
   ]
 })

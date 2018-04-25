@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
-
+import swal from 'sweetalert2'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
@@ -81,7 +81,15 @@ const store = new Vuex.Store({
         }
       }).then(response => {
         console.log('respon signup', response)
-        // document.querySelectorAll('#signInModal').modal('show')
+        swal(
+          'Welcome!',
+          'Sign Up success!',
+          'success'
+        )
+        localStorage.setItem('userId', response.data.data.id)
+        localStorage.setItem('token', response.data.data.token)
+        localStorage.setItem('name', response.data.data.name)
+        location.reload()
       }).catch(error => {
         console.log(error)
       })
@@ -96,9 +104,15 @@ const store = new Vuex.Store({
         }
       }).then(response => {
         console.log('signin', response)
+        swal(
+          'Welcome!',
+          'Login success!',
+          'success'
+        )
         localStorage.setItem('userId', response.data.data.id)
         localStorage.setItem('token', response.data.data.token)
         localStorage.setItem('name', response.data.data.name)
+        location.reload()
       }).catch(error => {
         console.log(error)
       })
@@ -115,6 +129,11 @@ const store = new Vuex.Store({
         }
       }).then(response => {
         console.log('store:response addcart', response)
+        swal(
+          'Add item success!',
+          'Your selection has been added to cart!',
+          'success'
+        )
         context.dispatch('showCart')
       }).catch(error => {
         console.log(error)
@@ -148,7 +167,11 @@ const store = new Vuex.Store({
             userid: context.state.activeUser.userId
           }
         }).then(response => {
-          alert('item deleted!')
+          swal(
+            'Remove item success!',
+            'Your item has been removed!',
+            'success'
+          )
           context.dispatch('showCart')
         }).catch(error => {
           // alert('something wrong!')
@@ -169,6 +192,11 @@ const store = new Vuex.Store({
               userid: context.state.activeUser.userId
             }
           }).then(response => {
+            swal(
+              'Success!',
+              'Your order has been put in checkout!',
+              'success'
+            )
             context.dispatch('showCart')
           }).catch(error => {
             // alert('something wrong!')
@@ -186,7 +214,12 @@ const store = new Vuex.Store({
           password: payload.password
         }
       }).then(response => {
-        console.log('signin', response)
+        console.log('signin', response.data.admin)
+        swal(
+          'Welcome!',
+          'Sign In success!',
+          'success'
+        )
         localStorage.setItem('userId', response.data.admin.id)
         localStorage.setItem('token', response.data.admin.token)
         localStorage.setItem('name', 'admin o-tasty')
@@ -199,11 +232,17 @@ const store = new Vuex.Store({
         method: 'POST',
         url: 'http://localhost:3000/items/upload',
         headers: {
-          'Content-type': 'multipart/form-data'
+          'Content-type': 'multipart/form-data',
+          token: context.state.activeUser.token
         },
         data: payload
       }).then(response => {
         console.log('respon upload==', response)
+        swal(
+          'success!',
+          'New item has been added!',
+          'success'
+        )
         context.dispatch('getItems')
       }).catch(error => {
         console.log(error)
@@ -218,7 +257,11 @@ const store = new Vuex.Store({
           userid: context.state.activeUser.userId
         }
       }).then(response => {
-        alert('item deleted!')
+        swal(
+          'Remove item success!',
+          'Item has been removed!',
+          'success'
+        )
         context.dispatch('getItems')
       }).catch(error => {
         // alert('something wrong!')

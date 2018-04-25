@@ -41,7 +41,8 @@
           <input type="file" name="image" class="form-control-file" id="uploadImage"
           accept="image/*" @change="handleUpload">
         </div>
-        <button type="button" class="btn btn-primary" @click="uploadFile">Submit</button>
+        <button v-if="input === true" type="button" class="btn btn-primary" @click="uploadFile">Submit</button>
+        <p v-else class="text-danger">All fields input must be filled!!</p>
       </form>
     </div>
     <div class="jumbotron" v-else id="nologin">
@@ -70,6 +71,13 @@ export default {
   computed: {
     activeUser: function () {
       return this.$store.getters.getActiveUser
+    },
+    input: function () {
+      if (this.sku !== '' && this.name !== '' && this.description !== '' && this.image !== '' && this.price !== '' && this.category !== '') {
+        return true
+      } else {
+        return false
+      }
     }
   },
   methods: {
