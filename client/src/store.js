@@ -4,6 +4,7 @@ import axios from 'axios'
 import swal from 'sweetalert2'
 Vue.use(Vuex)
 
+const serverUrl = 'http://ec2-18-222-96-137.us-east-2.compute.amazonaws.com'
 const store = new Vuex.Store({
   state: {
     items: [],
@@ -61,7 +62,7 @@ const store = new Vuex.Store({
       console.log('action getitems')
       axios({
         method: 'get',
-        url: 'http://localhost:3000/items'
+        url: `${serverUrl}/items`
       }).then(response => {
         console.log('respon get items', response)
         context.commit('getItems', response.data.listItem)
@@ -72,7 +73,7 @@ const store = new Vuex.Store({
     signUp: function (context, payload) {
       axios({
         method: 'post',
-        url: 'http://localhost:3000/users/signup',
+        url: `${serverUrl}/users/signup`,
         data: {
           name: payload.name,
           email: payload.email,
@@ -97,7 +98,7 @@ const store = new Vuex.Store({
     signIn: function (context, payload) {
       axios({
         method: 'post',
-        url: 'http://localhost:3000/users/signin',
+        url: `${serverUrl}/users/signin`,
         data: {
           email: payload.email,
           password: payload.password
@@ -121,7 +122,7 @@ const store = new Vuex.Store({
       // let self = this
       axios({
         method: 'post',
-        url: 'http://localhost:3000/transactions',
+        url: `${serverUrl}/transactions`,
         data: payload,
         headers: {
           userid: context.state.activeUser.userId,
@@ -143,7 +144,7 @@ const store = new Vuex.Store({
       console.log('===stateactive', context)
       axios({
         method: `GET`,
-        url: `http://localhost:3000/transactions`,
+        url: `${serverUrl}/transactions`,
         headers: {
           userid: context.state.activeUser.userId,
           token: context.state.activeUser.token
@@ -161,7 +162,7 @@ const store = new Vuex.Store({
       if (check === true) {
         axios({
           method: 'DELETE',
-          url: 'http://localhost:3000/transactions/' + payload._id,
+          url: `${serverUrl}/transactions/` + payload._id,
           headers: {
             token: context.state.activeUser.token,
             userid: context.state.activeUser.userId
@@ -186,7 +187,7 @@ const store = new Vuex.Store({
         for (let i = 0; i < data.length; i++) {
           axios({
             method: 'PUT',
-            url: 'http://localhost:3000/transactions/' + data[i]._id,
+            url: `${serverUrl}/transactions/` + data[i]._id,
             headers: {
               token: context.state.activeUser.token,
               userid: context.state.activeUser.userId
@@ -208,7 +209,7 @@ const store = new Vuex.Store({
     signInAdmin: function (context, payload) {
       axios({
         method: 'post',
-        url: 'http://localhost:3000/users/signinadmin',
+        url: `${serverUrl}/users/signinadmin`,
         data: {
           email: payload.email,
           password: payload.password
@@ -230,7 +231,7 @@ const store = new Vuex.Store({
     uploadFile: function (context, payload) {
       axios({
         method: 'POST',
-        url: 'http://localhost:3000/items/upload',
+        url: `${serverUrl}/items/upload`,
         headers: {
           'Content-type': 'multipart/form-data',
           token: context.state.activeUser.token
@@ -251,7 +252,7 @@ const store = new Vuex.Store({
     removeItem: function (context, payload) {
       axios({
         method: 'DELETE',
-        url: 'http://localhost:3000/items/' + payload._id,
+        url: `${serverUrl}/items/` + payload._id,
         headers: {
           token: context.state.activeUser.token,
           userid: context.state.activeUser.userId
