@@ -1,8 +1,7 @@
 const {User} = require('../models/users')
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
-const salt = bcrypt.genSaltSync(saltRounds);
-const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs')
+const salt = bcrypt.genSaltSync(10)
+const jwt = require('jsonwebtoken')
 
 module.exports = {
     getAllUser (req, res) {
@@ -21,12 +20,14 @@ module.exports = {
         user.username = req.body.username
         user.email = req.body.email
         user.password = hash
+        const token = jwt.sign({email: user.email, _id: user._id, username: user.username}, process.env.secret)
         user.save()
         .then(data => {
-            res.status(201).json({
-                message: 'Success create account',
-                data
-            })
+        res.status(201).json({
+            message: 'Register success',
+            data,
+            token
+        })
         })
     },
     editUser (req, res) {

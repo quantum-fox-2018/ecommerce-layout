@@ -77,17 +77,23 @@ export default {
   created: function () {
     this.showItem()
   },
+  computed: {
+    items () {
+      return this.products
+    }
+  },
   methods: {
     showItem () {
-      axios.get('http://localhost:3000/items').then(response => {
+      axios.get('http://server-ecommerce.fachrizal.com/items').then(response => {
         this.products = response.data.items
       })
     },
     addToCart (item) {
-      axios.post(`http://localhost:3000/items/cart`,
+      axios.post(`http://server-ecommerce.fachrizal.com/items/cart`,
         { itemId: item._id, totalPrice: item.price, quantity: 1 },
         { headers: {token: localStorage.getItem('token')} }).then(response => {
         this.cart = response.data
+        alert('Added to cart')
       })
     }
   },

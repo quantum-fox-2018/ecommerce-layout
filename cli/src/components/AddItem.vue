@@ -47,7 +47,7 @@ export default {
       formData.append('price', this.price)
       formData.append('brand', this.brand)
       formData.append('img', this.img)
-      axios.post('http://localhost:3000/items', formData, {
+      axios.post('http://server-ecommerce.fachrizal.com/items', formData, {
         headers: {
           'Content-type': 'multipart/form-data'
         }
@@ -57,6 +57,8 @@ export default {
         this.brand = ''
       })
       alert('Added New Item')
+      this.$router.push({path: '/'})
+      location.reload()
     },
     handleUpload (event) {
       this.img = event.target.files[0]

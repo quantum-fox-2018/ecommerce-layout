@@ -29,7 +29,7 @@
     </div>
     <a class="nav-main navbar-brand text-light d-block d-md-none">
       <i class="fas fa-headphones"></i> DJ-Store</a>
-    <a role="button" class="btn text-light bg-dark" style="background-color: black !important;" data-toggle="modal" data-target="#cartModal">
+    <a role="button" class="btn text-light bg-dark" style="background-color: black !important;" data-toggle="modal" data-target="#cartModal" @click="cart">
       Cart <i class="fas fa-shopping-cart"></i>
     </a>
   </nav>
@@ -118,5 +118,14 @@
 </template>
 
 <script>
-export default {}
+import axios from 'axios'
+export default {
+  methods: {
+    cart () {
+      axios.get('http://server-ecommerce.fachrizal.com/items/cart', { headers: {token: localStorage.getItem('token')} }).then(response => {
+        console.log(response.data)
+      })
+    }
+  }
+}
 </script>

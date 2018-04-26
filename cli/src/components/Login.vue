@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     login () {
-      axios.post('http://localhost:3000/users/login', {
+      axios.post('http://server-ecommerce.fachrizal.com/users/login', {
         email: this.email,
         password: this.password
       }).then(response => {

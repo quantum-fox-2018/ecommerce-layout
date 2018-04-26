@@ -27,6 +27,7 @@ module.exports = {
           })
         })
       } else {
+        console.log('masuk else')
         const item = new ItemCons ()
         item.userId = decoded._id
         item.itemId = req.body.itemId

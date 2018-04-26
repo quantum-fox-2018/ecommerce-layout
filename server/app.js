@@ -7,7 +7,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 var cors = require('cors')
-mongoose.connect('mongodb://localhost:27017/dj-store', (err => {
+mongoose.connect('mongodb://dj-store:1234@ds157599.mlab.com:57599/dj-store', (err => {
   if(err){
     console.log('failed to connect');
   } else {
